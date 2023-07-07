@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
+html {
+	// overflow: hidden;
+	height: 100%;
+	font-size: 62.5%;
+	font-family: 'Noto Sans KR', 'SF Pro KR', 'SF Pro Text', 'SF Pro Icons',
+		'Apple Gothic', 'HY Gulim', 'MalgunGothic', 'HY Dotum', 'Lexi Gulim',
+		'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	-webkit-text-size-adjust: none;
+}
+body {
+	// overflow-y: auto;
+	height: 100%;
+	background-color: var(--mainBg);
+	color: var(--mainTxt);
+}
+#root,
+.wrapper {
+	height: 100%;
+}
+body,
+div,
+p,
+span,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+th,
+td,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+select,
+header,
+footer,
+main,
+article,
+section,
+aside,
+img,
+label {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+body,
+input,
+textarea,
+select,
+button,
+table {
+	// font-family: $spoqa, sans-serif;
+	font-size: 1.3rem;
+	color: #111;
+}
+img,
+fieldset {
+	border: 0;
+}
+fieldset {
+	// bug
+	min-width: 0;
+}
+// a, button, details, embed, iframe, label, select, input, textarea {
+//     &:focus {
+//         border: .1rem solid rgba(#4337ca, .5);
+//     }
+// }
+a {
+	color: #111;
+	text-decoration: none;
+	&:active,
+	&:hover,
+	&:focus {
+		color: #111;
+	}
+}
+input,
+select,
+textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+}
+input[type='checkbox'],
+input[type='radio'] {
+	// @extend .sr-only;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+}
+input {
+	&:disabled,
+	&:read-only:not(select) {
+		// color: $gray;
+		opacity: 1; /* required on iOS */
+		// border-bottom-color: $gray;
+		background-color: transparent;
+	}
+	&:read-only.readonly-bk {
+		// color: $black;
+		opacity: 1; /* required on iOS */
+	}
+	&.readonly-bk::placeholder {
+		// color: $gray;
+		opacity: 1; /* required on iOS */
+	}
+}
+
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+input::-ms-clear,
+input::-ms-reveal {
+	display: none;
+	width: 0;
+	height: 0;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-resultss-button,
+input::-webkit-search-resultss-decoration {
+	display: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type='number'] {
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+button {
+	border: 0;
+	border-radius: 0;
+	background-color: transparent;
+	outline: none;
+	cursor: pointer;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+ul,
+ol {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+}
+em {
+	font-style: normal;
+}

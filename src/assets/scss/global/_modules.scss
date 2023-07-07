@@ -1,0 +1,213 @@
+@use './assets/scss/modules/common';
+
+.sr_only {
+	overflow: hidden;
+	position: absolute;
+	width: 0.1rem;
+	height: 0.1rem;
+	border: 0;
+	margin: -0.1rem;
+	padding: 0;
+	clip: rect(0, 0, 0, 0);
+	clip-path: rect(0, 0, 0, 0);
+}
+
+.dot_list {
+	li {
+		display: flex;
+		align-items: flex-start;
+		padding-top: 2rem;
+		&:first-child {
+			padding-top: 0;
+		}
+		&::before {
+			content: '';
+			display: block;
+			width: 0.4rem;
+			height: 0.4rem;
+			margin-top: 0.4rem;
+			margin-right: 0.5rem;
+			border-radius: 50%;
+			background-color: var(--mainBgReverse);
+		}
+	}
+}
+
+// button
+a.btn {
+	max-width: 10rem;
+	text-align: center;
+}
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&.xs {
+		padding: 0.8rem 1rem;
+		font-size: 1.1rem;
+	}
+	&.sm {
+		padding: 1rem 1.2rem;
+		font-size: 1.2rem;
+	}
+	&.md {
+		padding: 1.2rem 1.5rem;
+		font-size: 1.3rem;
+	}
+	&.lg {
+		padding: 1.3rem 2rem;
+		font-size: 1.4rem;
+	}
+	&.xl {
+		padding: 1.4rem 2.4rem;
+		font-size: 1.6rem;
+	}
+	&.primary {
+		background-color: common.$primary;
+		color: common.$white;
+	}
+	&.secondary {
+		background-color: common.$primary-light;
+		color: common.$main-font;
+	}
+	&.dark {
+		background-color: common.$gray3;
+		color: common.$white;
+	}
+	&.light {
+		border: 0.1rem solid common.$grayC;
+		background-color: common.$white;
+		color: common.$main-font;
+	}
+	&.border {
+		border-radius: 0.5rem;
+	}
+}
+
+// table
+.table {
+	border-collapse: separate;
+	border-spacing: 0;
+	width: 100%;
+	border-radius: 1rem;
+	border: 0.1rem solid common.$grayD;
+	.width10 {
+		width: 10%;
+	}
+	.width15 {
+		width: 15%;
+	}
+	.width20 {
+		width: 20%;
+	}
+	.width15 {
+		width: 15%;
+	}
+	.width25 {
+		width: 25%;
+	}
+	.width35 {
+		width: 30%;
+	}
+	.width30 {
+		width: 35%;
+	}
+	.widthAll {
+		width: auto;
+	}
+	thead {
+		th {
+			padding: 2rem;
+			border-bottom: 0.1rem solid common.$grayD;
+			border-right: 0.1rem solid common.$grayD;
+			background-color: common.$primary-bg;
+			&:first-child {
+				border-top-left-radius: 1rem;
+			}
+			&:last-child {
+				border-top-right-radius: 1rem;
+				border-right: 0 none;
+			}
+		}
+	}
+	tbody {
+		th,
+		td {
+			border-bottom: 0.1rem solid common.$grayD;
+			border-right: 0.1rem solid common.$grayD;
+			padding: 2rem;
+			color: var(--mainTxt);
+			&:last-child {
+				border-right: 0 none;
+			}
+		}
+		tr {
+			&:last-child {
+				th,
+				td {
+					border-bottom: 0 none;
+					&:first-child {
+						border-bottom-left-radius: 1rem;
+					}
+					&:last-child {
+						border-bottom-right-radius: 1rem;
+					}
+				}
+			}
+		}
+	}
+	.txt_left {
+		text-align: left;
+	}
+	.txt_center {
+		text-align: center;
+	}
+	.txt_right {
+		text-align: right;
+	}
+	.no_data {
+		text-align: center;
+	}
+}
+.table_view {
+	table-layout: fixed;
+	border-collapse: separate;
+	border-spacing: 0;
+	width: 100%;
+	tbody {
+		tr {
+			&:first-child {
+				th,
+				td {
+					border-top: 0.2rem solid #999;
+				}
+			}
+			&:last-child {
+				th,
+				td {
+					border-bottom: 0.1rem solid #ccc;
+				}
+			}
+		}
+		th {
+			background-color: rgba(#4337ca, 0.05);
+		}
+		th,
+		td {
+			border-top: 0.1rem solid #ccc;
+			padding: 2rem 0.5rem;
+		}
+	}
+	.txt_left {
+		text-align: left;
+	}
+	.txt_center {
+		text-align: center;
+	}
+	.txt_right {
+		text-align: right;
+	}
+	.no_data {
+		text-align: center;
+	}
+}

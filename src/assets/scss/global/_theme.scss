@@ -1,0 +1,42 @@
+:root[color-mode='dark'] {
+	// Background
+	--mainBg: #333;
+	--subBg: #999;
+	--mainBgReverse: #fff;
+
+	--mainBorder: #000;
+
+	// Font
+	--mainTxt: #fff;
+	--subTxt: #081481;
+	--mainTxtReverse: #333;
+	--sameTxtLight: #fff;
+	--sameTxtDark: #333;
+
+	// Point Color
+	--primary: #0458f9;
+	--primaryLight: #d0f0fc;
+	--primaryDark: #081481;
+	--primaryBg: #f5fcff;
+}
+:root[color-mode='light'] {
+	// Background
+	--mainBg: #fff;
+	--subBg: #ddd;
+	--mainBgReverse: #000;
+
+	--mainBorder: #fff;
+
+	// Font
+	--mainTxt: #333;
+	--subTxt: #081481;
+	--mainTxtReverse: #fff;
+	--sameTxtLight: #fff;
+	--sameTxtDark: #333;
+
+	// Point Color
+	--primary: #0458f9;
+	--primaryLight: #d0f0fc;
+	--primaryDark: #081481;
+	--primaryBg: #f5fcff;
+}

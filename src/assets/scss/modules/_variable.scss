@@ -1,0 +1,50 @@
+// point color
+$primary: #0458f9;
+$primary-light: #d0f0fc;
+$primary-dark: #081481;
+$primary-bg: #f5fcff;
+
+// gray color
+$gray3: #333; // font
+$gray6: #666; // font
+$gray8: #888; // font size 1.8rem OR bold 1.4rem // expadable page's common text, image text
+
+$grayA: #aaa; // border
+$grayB: #bbb; // border
+$grayC: #ccc; // border
+$grayD: #ddd; // border
+
+// font color
+$main-font: #4b5563;
+$em-font: #111827;
+
+// etc color
+$main-border: #888;
+$main-bg: #f2f4f6;
+
+// disabled color
+$disabled-border: $grayA;
+$disabled-bg: $grayB;
+$disabled-font: $grayA;
+$success: #40bf63;
+$info: #006ee2;
+$warning: #ee9403;
+$error: #eb4f2d;
+
+// color
+$black: #000;
+$white: #fff;
+
+// font-size
+$fs-xs: 1.1rem;
+$fs-s: 1.3rem;
+$fs-m: 1.5rem;
+$fs-l: 1.8rem;
+$fs-xl: 2.4rem;
+
+// font-weight
+$font-bold: 700;
+$font-medium: 500;
+$font-regular: 400;
+$font-light: 300;
+$font-thin: 100;
