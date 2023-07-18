@@ -71,6 +71,141 @@ main {
 		width: 100rem;
 		margin: 0 auto;
 		padding: 10.5rem 0 5rem;
+		.title_area {
+			padding-bottom: 5rem;
+			.main_title {
+				font-size: common.$fs-xl;
+				text-align: center;
+			}
+		}
+		.content_area {
+			.form_area {
+				.form_row {
+					+ .form_row {
+						margin-top: 2rem;
+					}
+					h4 {
+						display: inline-flex;
+						padding-bottom: 1.5rem;
+						font-weight: bold;
+						font-size: common.$fs-m;
+						color: common.$gray6;
+					}
+					&.flex {
+						display: flex;
+						.input_wrap {
+							flex: 1;
+							+ .input_wrap {
+								margin-left: 1rem;
+							}
+						}
+					}
+					.select_wrap {
+						width: 30%;
+						+ .input-wrap {
+							margin-left: 1rem;
+						}
+					}
+					.date_wrap {
+						margin-left: 1rem;
+					}
+					.editor_wrap {
+						flex: 1;
+						.ql_snow {
+							border-color: common.$gray8;
+						}
+						.ql_toolbar {
+							&:focus {
+								outline: 0.1rem solid red;
+							}
+						}
+						.ql_container {
+							height: auto;
+							.ql_editor {
+								&.ql-blank::before {
+									// placeholder
+									font-style: inherit;
+									color: common.$gray8;
+								}
+								&:focus {
+									outline: 0.1rem solid rgba(#4337ca, 0.5);
+								}
+							}
+						}
+					}
+					.check_list {
+						display: grid;
+						grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+						row-gap: 1rem;
+						padding: 2rem;
+						background-color: rgba(#4337ca, 0.05);
+					}
+				}
+			}
+			.data_table_area {
+				.table {
+					td {
+						height: 7rem;
+						padding: 0 2rem;
+						.board_title {
+							display: inline-block;
+							padding: 1rem;
+						}
+						.btn_icon {
+							display: block;
+							width: 2.4rem;
+							height: 2.4rem;
+							font-size: common.$fs-m;
+						}
+					}
+				}
+				.edit_btns_wrap {
+					display: flex;
+					align-items: center;
+					.editable_area {
+						.before_edit {
+							display: flex;
+							align-items: center;
+							.category-title {
+								display: block;
+								margin-right: 1rem;
+							}
+						}
+						.editable {
+							display: flex;
+							align-items: center;
+							margin-right: 1rem;
+						}
+					}
+				}
+				.list_btns_wrap {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+		}
+		.footer_area {
+			display: flex;
+			padding-top: 3rem;
+			justify-content: center;
+			a,
+			button {
+				+ a,
+				+ button {
+					margin-left: 2rem;
+				}
+			}
+			&.left {
+				justify-content: flex-start;
+			}
+			&.right {
+				justify-content: flex-end;
+			}
+			&.side {
+				justify-content: space-between;
+			}
+		}
 	}
 	.guide_body {
 		display: flex;
@@ -107,6 +242,9 @@ main {
 								border-radius: 0.5rem;
 								font-size: common.$fs-m;
 								color: var(--mainTxt);
+								&::first-letter {
+									text-transform: uppercase;
+								}
 								&.active {
 									background-color: common.$primary-light;
 									color: var(--subTxt);
@@ -498,6 +636,7 @@ main {
 						width: 30rem;
 						border: 0.1rem solid common.$gray8;
 						border-radius: 1rem;
+						background-color: common.$white;
 						img {
 							width: 100%;
 							height: auto;
