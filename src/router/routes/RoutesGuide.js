@@ -1,22 +1,25 @@
 import GuideLayout from 'components/layouts/GuideLayout';
 
 // Introduce
-import Spec from 'views/guides/introduce/Spec';
-import Convention from 'views/guides/introduce/Convention';
-import Accessibility from 'views/guides/introduce/Accessibility';
+import Spec from 'views/guide/introduce/Spec';
+import Convention from 'views/guide/introduce/Convention';
+import Accessibility from 'views/guide/introduce/Accessibility';
 
 // components
-import LibAlert from 'views/guides/components/LibAlert';
-import LibCheckbox from 'views/guides/components/LibCheckbox';
-import LibInput from 'views/guides/components/LibInput';
-import LibModal from 'views/guides/components/LibModal';
-import LibRadio from 'views/guides/components/LibRadio';
-import LibSelect from 'views/guides/components/LibSelect';
-import LibSwiper from 'views/guides/components/LibSwiper';
-import LibTabs from 'views/guides/components/LibTabs';
-import LibToast from 'views/guides/components/LibToast';
-import LibToggle from 'views/guides/components/LibToggle';
+import LibAlert from 'views/guide/components/LibAlert';
+import LibCheckbox from 'views/guide/components/LibCheckbox';
+import LibInput from 'views/guide/components/LibInput';
+import LibModal from 'views/guide/components/LibModal';
+import LibRadio from 'views/guide/components/LibRadio';
+import LibSelect from 'views/guide/components/LibSelect';
+import LibSwiper from 'views/guide/components/LibSwiper';
+import LibTabs from 'views/guide/components/LibTabs';
+import LibToast from 'views/guide/components/LibToast';
+import LibToggle from 'views/guide/components/LibToggle';
 // import LibUpload from 'views/guides/components/LibUpload';
+
+// modules
+import LibButton from 'views/guide/modules/LibButton';
 
 const RoutesGuide = {
 	path: '/guide',
@@ -46,6 +49,10 @@ const RoutesGuide = {
 				{ path: 'toggle', element: <LibToggle /> },
 				// { path: 'upload', element: <LibUpload /> },
 			],
+		},
+		{
+			path: 'modules',
+			children: [{ path: 'button', element: <LibButton /> }],
 		},
 	],
 };

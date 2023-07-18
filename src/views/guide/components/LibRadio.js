@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import Code from 'views/guides/Code';
+import Code from 'views/guide/Code';
 import Radio from 'components/Radio';
 
 const LibRadio = () => {

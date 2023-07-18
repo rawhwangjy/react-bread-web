@@ -1,47 +1,49 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Code from 'views/guides/Code';
-import Modal, { ModalHeader, ModalContent } from 'components/Modal';
+import Code from 'views/guide/Code';
+import Toast from 'components/Toast';
 
-const LibModal = () => {
+const LibToast = () => {
 	const params = useLocation();
 
 	const jsCode = `
-import Modal, { ModalHeader, ModalContent } from 'components/Modal';
+import Toast from 'components/Toast';
 
-const [currentState, setCurrentState] = useState(false);
+const [showToast, setShowToast] = useState(false);
 
-const openModal = () => {
-	setCurrentState((prevState) => !prevState);
+const openAlert = () => {
+	setShowToast((prevState) => !prevState);
 };
 
-const closeModal = (nextState) => {
-	setCurrentState(nextState);
+const changedToast = (nextState) => {
+	setShowToast(nextState);
 };
 
 return (
-	<Modal
-		currentState={currentState}
-		onClose={closeModal}
+	<button
+		type='button'
+		className='btn sm primary'
+		onClick={openAlert}
 	>
-		<ModalHeader>Modal Title</ModalHeader>
-		<ModalContent>
-			<h4>Modal Content</h4>
-			<span>원하는 내용을 추가하세요.</span>
-		</ModalContent>
-	</Modal>
+		<span>Toast 열기</span>
+	</button>
+	<Toast
+		showToast={showToast}
+		message='토스트 맛있다!'
+		onChange={changedToast}
+	/>
 );
 	`;
 
-	const [currentState, setCurrentState] = useState(false);
+	const [showToast, setShowToast] = useState(false);
 
-	const openModal = () => {
-		setCurrentState((prevState) => !prevState);
+	const openAlert = () => {
+		setShowToast((prevState) => !prevState);
 	};
 
-	const closeModal = (nextState) => {
-		setCurrentState(nextState);
+	const changedToast = (nextState) => {
+		setShowToast(nextState);
 	};
 
 	return (
@@ -130,20 +132,15 @@ return (
 							<button
 								type='button'
 								className='btn sm primary'
-								onClick={openModal}
+								onClick={openAlert}
 							>
-								<span>Modal 열기</span>
+								<span>Toast 열기</span>
 							</button>
-							<Modal
-								currentState={currentState}
-								onClose={closeModal}
-							>
-								<ModalHeader>Modal Title</ModalHeader>
-								<ModalContent>
-									<h4>Modal Content</h4>
-									<span>원하는 내용을 추가하세요.</span>
-								</ModalContent>
-							</Modal>
+							<Toast
+								showToast={showToast}
+								message='토스트 맛있다!'
+								onChange={changedToast}
+							/>
 						</div>
 						<Code
 							language='javascript'
@@ -156,4 +153,4 @@ return (
 	);
 };
 
-export default LibModal;
+export default LibToast;

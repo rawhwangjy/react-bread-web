@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import Code from 'views/guides/Code';
+import Code from 'views/guide/Code';
 import Tabs, { Tab } from 'components/Tabs';
 
 const LibTabs = () => {
