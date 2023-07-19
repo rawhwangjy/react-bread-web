@@ -14,7 +14,6 @@ const Api = {
  * @description Board List
  */
 export const httpGetBoardList = (reqData) => {
-	console.log('req', reqData);
 	return axiosInstance({
 		method: RequestType.POST,
 		url: Api.getBoardList,
@@ -37,16 +36,6 @@ export const httpGetBoard = (reqData) => {
  * @description Board Create
  */
 export const httpSetBoard = (reqData) => {
-	for (const pair of reqData.entries()) {
-		console.log(`FormData >>> ${pair}`);
-	}
-	// for (let key of reqData.keys()) {
-	// 	console.log('FormData1', key, ':', reqData.get(key));
-	// }
-	// for (let value of reqData.values()) {
-	// 	console.log('FormData', value, ':', reqData.get(value));
-	// }
-
 	return axiosInstance({
 		method: RequestType.POST,
 		url: Api.boardCreate,

@@ -11,7 +11,6 @@ const boardSlice = createSlice({
 	reducers: {
 		isLoading(state, action) {
 			state.isLoading = action.payload.isLoading;
-			console.log();
 		},
 		isError(state, action) {
 			state.isError = action.payload.isError;

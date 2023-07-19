@@ -10,7 +10,6 @@ export const fetchCategoryData = () => {
 	return async (dispatch) => {
 		dispatch(categoryActions.isLoading({ isLoading: true }));
 		const response = await httpGetCategoryList();
-		// console.log('fetchCategoryData >>>', response);
 		try {
 			console.log('ok');
 			dispatch(
@@ -30,7 +29,6 @@ export const setCategoryData = (reqData) => {
 	return async (dispatch) => {
 		dispatch(categoryActions.isLoading({ isLoading: true }));
 		await httpSetCategory(reqData);
-		// console.log('setCategoryData >>>', response);
 		try {
 			console.log('ok');
 			dispatch(categoryActions.isLoading({ isLoading: false }));
@@ -45,7 +43,6 @@ export const updateCategoryData = (reqData) => {
 	return async (dispatch) => {
 		dispatch(categoryActions.isLoading({ isLoading: true }));
 		await httpCategoryUpdate(reqData);
-		// console.log('updateCategoryData >>>', response);
 		try {
 			console.log('ok');
 			dispatch(categoryActions.isLoading({ isLoading: false }));
@@ -60,7 +57,6 @@ export const deleteCategoryData = (reqData) => {
 	return async (dispatch) => {
 		dispatch(categoryActions.isLoading({ isLoading: true }));
 		await httpCategoryDelete(reqData);
-		// console.log('deleteCategoryData >>>', response);
 		try {
 			console.log('ok');
 			dispatch(categoryActions.isLoading({ isLoading: false }));

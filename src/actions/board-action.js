@@ -3,13 +3,15 @@ import {
 	httpGetBoardList,
 	httpGetBoard,
 	httpSetBoard,
+	httpBoardUpdate,
+	httpBoardDelete,
+	httpBoardListDelete,
 } from 'services/board/board.api';
 
 export const fetchBoardListData = (reqData) => {
 	return async (dispatch) => {
 		dispatch(boardActions.isLoading({ isLoading: true }));
 		const response = await httpGetBoardList(reqData);
-		console.log('fetchBoardListData >>>', response);
 		try {
 			console.log('ok');
 			dispatch(
@@ -29,7 +31,6 @@ export const fetchBoardData = (reqData) => {
 	return async (dispatch) => {
 		dispatch(boardActions.isLoading({ isLoading: true }));
 		const response = await httpGetBoard(reqData);
-		console.log('fetchBoardData >>>', response);
 		try {
 			console.log('ok');
 			dispatch(
@@ -49,7 +50,48 @@ export const setBoardData = (reqData) => {
 	return async (dispatch) => {
 		dispatch(boardActions.isLoading({ isLoading: true }));
 		await httpSetBoard(reqData);
-		// console.log('setCategoryData >>>', response);
+		try {
+			console.log('ok');
+			dispatch(boardActions.isLoading({ isLoading: false }));
+		} catch (error) {
+			console.log('fail');
+			dispatch(boardActions.isError({ isError: true }));
+		}
+	};
+};
+
+export const updateBoardData = (reqData) => {
+	return async (dispatch) => {
+		dispatch(boardActions.isLoading({ isLoading: true }));
+		await httpBoardUpdate(reqData);
+		try {
+			console.log('ok');
+			dispatch(boardActions.isLoading({ isLoading: false }));
+		} catch (error) {
+			console.log('fail');
+			dispatch(boardActions.isError({ isError: true }));
+		}
+	};
+};
+
+export const deleteBoardData = (reqData) => {
+	return async (dispatch) => {
+		dispatch(boardActions.isLoading({ isLoading: true }));
+		await httpBoardDelete(reqData);
+		try {
+			console.log('ok');
+			dispatch(boardActions.isLoading({ isLoading: false }));
+		} catch (error) {
+			console.log('fail');
+			dispatch(boardActions.isError({ isError: true }));
+		}
+	};
+};
+
+export const deleteBoardListData = (reqData) => {
+	return async (dispatch) => {
+		dispatch(boardActions.isLoading({ isLoading: true }));
+		await httpBoardListDelete(reqData);
 		try {
 			console.log('ok');
 			dispatch(boardActions.isLoading({ isLoading: false }));

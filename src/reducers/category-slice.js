@@ -10,15 +10,12 @@ const categorySlice = createSlice({
 	reducers: {
 		isLoading(state, action) {
 			state.isLoading = action.payload.isLoading;
-			console.log();
 		},
 		isError(state, action) {
 			state.isError = action.payload.isError;
 		},
 		getCategoryList(state, action) {
 			state.categoryList = [...action.payload.categoryList];
-			// console.log('action.payload.categoryList', action.payload.categoryList);
-			// console.log('state.categoryList', state.categoryList);
 		},
 	},
 });
