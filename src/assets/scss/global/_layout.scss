@@ -173,22 +173,6 @@ main {
 				}
 			}
 			.data_table_area {
-				.table {
-					td {
-						height: 7rem;
-						padding: 0 2rem;
-						.board_title {
-							display: inline-block;
-							padding: 1rem;
-						}
-						.btn_icon {
-							display: block;
-							width: 2.4rem;
-							height: 2.4rem;
-							font-size: common.$fs-m;
-						}
-					}
-				}
 				.edit_btns_wrap {
 					display: flex;
 					align-items: center;

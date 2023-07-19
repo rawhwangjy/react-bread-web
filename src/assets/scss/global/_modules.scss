@@ -144,7 +144,9 @@ a.btn {
 		}
 		td {
 			color: var(--mainTxt);
-			a {
+			a,
+			svg,
+			path {
 				color: var(--mainTxt);
 			}
 		}
