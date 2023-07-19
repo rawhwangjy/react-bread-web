@@ -1,13 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import uiSlice from "./ui-slice";
-import cartSlice from "./cart-slice";
+import categorySlice from 'reducers/category-slice';
+import boardSlice from 'reducers/board-slice';
 
 const store = configureStore({
-  reducer: {
-    uiStore: uiSlice.reducer,
-    cartStore: cartSlice.reducer,
-  },
+	reducer: {
+		categoryStore: categorySlice.reducer,
+		boardStore: boardSlice.reducer,
+	},
 });
 
 export default store;
