@@ -10,6 +10,7 @@ import LibAlert from 'views/guide/components/LibAlert';
 import LibCheckbox from 'views/guide/components/LibCheckbox';
 import LibInput from 'views/guide/components/LibInput';
 import LibModal from 'views/guide/components/LibModal';
+import LibPreview from 'views/guide/components/LibPreview';
 import LibRadio from 'views/guide/components/LibRadio';
 import LibSelect from 'views/guide/components/LibSelect';
 import LibSwiper from 'views/guide/components/LibSwiper';
@@ -41,6 +42,7 @@ const RoutesGuide = {
 				{ path: 'checkbox', element: <LibCheckbox /> },
 				{ path: 'input', element: <LibInput /> },
 				{ path: 'modal', element: <LibModal /> },
+				{ path: 'preview', element: <LibPreview /> },
 				{ path: 'radio', element: <LibRadio /> },
 				{ path: 'select', element: <LibSelect /> },
 				{ path: 'swiper', element: <LibSwiper /> },
