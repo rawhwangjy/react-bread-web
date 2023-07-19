@@ -10,7 +10,7 @@ const LibUpload = () => {
 	const jsCode = `
 import Upload from 'components/Upload';
 
-const [uploadValue, setUploadValue] = useState([]);
+const [uploadValue, setUploadValue] = useState('');
 
 const changedUpload = (nextState) => {
 	setUploadValue(nextState);
@@ -25,11 +25,11 @@ return (
 );
 	`;
 
-	const [currentValue, setCurrentValue] = useState('');
+	const [uploadValue, setUploadValue] = useState('');
 
 	const changedUpload = (nextState) => {
-		setCurrentValue(nextState);
-		console.log('currentValue', currentValue);
+		setUploadValue(nextState);
+		console.log('currentValue', uploadValue);
 	};
 	return (
 		<>
