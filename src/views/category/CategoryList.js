@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
 	fetchCategoryData,
 	updateCategoryData,
@@ -8,8 +9,9 @@ import {
 } from 'actions/category-action';
 
 import Input from 'components/Input';
-// import Select from 'components/Select';
 import Alert from 'components/Alert';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CategoryList = () => {
 	const location = useLocation();
@@ -78,15 +80,9 @@ const CategoryList = () => {
 	return (
 		<div className='page_container'>
 			<div className='title_area'>
-				<h3 className='main_title'>{location.path}</h3>
+				<h3 className='main_title'>게시판 목록</h3>
 			</div>
 			<div className='content_area'>
-				{isLoading ? <span>로딩 중</span> : <span>로딩 끝ㅇㅇㅇ</span>}
-				{/* <Select
-					options={options}
-					selectedValue={selectedValue}
-					onChange={changedSelect}
-				/> */}
 				<div className='data_table_area'>
 					<table className='table vertical'>
 						<colgroup>
@@ -121,10 +117,13 @@ const CategoryList = () => {
 															</span>
 															<button
 																type='button'
-																className='btn sm primary'
+																className='btn md'
 																onClick={() => onEditText(item)}
 															>
-																<span>수정</span>
+																<FontAwesomeIcon
+																	icon='fa-solid fa-pencil'
+																	aria-label='수정'
+																/>
 															</button>
 														</span>
 													)}
@@ -139,10 +138,13 @@ const CategoryList = () => {
 															/>
 															<button
 																type='button'
-																className='btn sm primary'
+																className='btn md'
 																onClick={() => updateCategory(item)}
 															>
-																<span>완료</span>
+																<FontAwesomeIcon
+																	icon='fa-solid fa-check'
+																	aria-label='완료'
+																/>
 															</button>
 														</span>
 													)}
@@ -156,10 +158,13 @@ const CategoryList = () => {
 												</div>
 												<button
 													type='button'
-													className='btn sm secondary'
+													className='btn md'
 													onClick={() => deleteCategory(item.id)}
 												>
-													<span>삭제</span>
+													<FontAwesomeIcon
+														icon='fa-solid fa-trash'
+														aria-label='삭제'
+													/>
 												</button>
 											</div>
 										</td>
