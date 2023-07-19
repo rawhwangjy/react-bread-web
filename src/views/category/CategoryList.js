@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -8,17 +8,17 @@ import {
 	deleteCategoryData,
 } from 'actions/category-action';
 
+import { deleteBoardListData } from 'actions/board-action';
+
 import Input from 'components/Input';
 import Alert from 'components/Alert';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CategoryList = () => {
-	const location = useLocation();
 	const dispatch = useDispatch();
 
 	const categoryList = useSelector((state) => state.categoryStore.categoryList);
-	const isLoading = useSelector((state) => state.categoryStore.isLoading);
 
 	useEffect(() => {
 		dispatch(fetchCategoryData());
@@ -70,7 +70,7 @@ const CategoryList = () => {
 			dispatch(deleteCategoryData(reqData));
 			setAlertMessage('삭제되었습니다');
 			openAlert();
-			//   await boardStore.actionHttpBoardListDelete(targetBoard)
+			dispatch(deleteBoardListData(reqData));
 		} else {
 			setAlertMessage('취소되었습니다');
 			openAlert();
@@ -117,7 +117,7 @@ const CategoryList = () => {
 															</span>
 															<button
 																type='button'
-																className='btn md'
+																className='btn sm'
 																onClick={() => onEditText(item)}
 															>
 																<FontAwesomeIcon
@@ -138,7 +138,7 @@ const CategoryList = () => {
 															/>
 															<button
 																type='button'
-																className='btn md'
+																className='btn sm'
 																onClick={() => updateCategory(item)}
 															>
 																<FontAwesomeIcon
@@ -158,7 +158,7 @@ const CategoryList = () => {
 												</div>
 												<button
 													type='button'
-													className='btn md'
+													className='btn sm'
 													onClick={() => deleteCategory(item.id)}
 												>
 													<FontAwesomeIcon
