@@ -106,10 +106,10 @@ a.btn {
 	.width25 {
 		width: 25%;
 	}
-	.width35 {
+	.width30 {
 		width: 30%;
 	}
-	.width30 {
+	.width35 {
 		width: 35%;
 	}
 	.widthAll {
@@ -120,7 +120,8 @@ a.btn {
 			padding: 2rem;
 			border-bottom: 0.1rem solid common.$grayD;
 			border-right: 0.1rem solid common.$grayD;
-			background-color: common.$primary-bg;
+			background-color: var(--primaryLight);
+			color: var(--sameTxtDark);
 			&:first-child {
 				border-top-left-radius: 1rem;
 			}
@@ -139,6 +140,12 @@ a.btn {
 			color: var(--mainTxt);
 			&:last-child {
 				border-right: 0 none;
+			}
+		}
+		td {
+			color: var(--mainTxt);
+			a {
+				color: var(--mainTxt);
 			}
 		}
 		tr {
@@ -190,12 +197,19 @@ a.btn {
 			}
 		}
 		th {
-			background-color: rgba(#4337ca, 0.05);
+			background-color: var(--primaryLight);
+			color: var(--sameTxtDark);
 		}
 		th,
 		td {
 			border-top: 0.1rem solid #ccc;
 			padding: 2rem 0.5rem;
+		}
+		td {
+			color: var(--mainTxt);
+			a {
+				color: var(--mainTxt);
+			}
 		}
 	}
 	.txt_left {
@@ -209,5 +223,34 @@ a.btn {
 	}
 	.no_data {
 		text-align: center;
+	}
+	.preview_img_list {
+		display: flex;
+		li {
+			width: 200px;
+			img {
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+}
+
+// editor
+.quill_editor {
+	background-color: var(--mainBg);
+	color: var(--mainTxt);
+	.ql-snow {
+		border-color: common.$main-border;
+		background-color: var(--mainBg);
+		color: var(--mainTxt);
+		.ql-picker-label {
+			&::before {
+				color: var(--mainTxt);
+			}
+		}
+		.ql-stroke {
+			stroke: var(--mainTxt);
+		}
 	}
 }

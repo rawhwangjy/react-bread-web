@@ -16,7 +16,7 @@ import LibSwiper from 'views/guide/components/LibSwiper';
 import LibTabs from 'views/guide/components/LibTabs';
 import LibToast from 'views/guide/components/LibToast';
 import LibToggle from 'views/guide/components/LibToggle';
-// import LibUpload from 'views/guides/components/LibUpload';
+import LibUpload from 'views/guide/components/LibUpload';
 
 // modules
 import LibButton from 'views/guide/modules/LibButton';
@@ -47,7 +47,7 @@ const RoutesGuide = {
 				{ path: 'tabs', element: <LibTabs /> },
 				{ path: 'toast', element: <LibToast /> },
 				{ path: 'toggle', element: <LibToggle /> },
-				// { path: 'upload', element: <LibUpload /> },
+				{ path: 'upload', element: <LibUpload /> },
 			],
 		},
 		{

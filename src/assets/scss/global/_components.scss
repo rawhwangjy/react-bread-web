@@ -379,9 +379,10 @@
 				z-index: 0;
 				width: 100%;
 				height: 3.6rem;
-				border: 0.1rem solid common.$gray8;
 				padding: 0 3.6rem 0 1rem;
-				color: common.$main-font;
+				border: 0.1rem solid common.$gray8;
+				background-color: var(--mainBg);
+				color: var(--mainTxt);
 				&::placeholder {
 					color: common.$gray8;
 				}
@@ -422,6 +423,56 @@
 		padding: 1rem 1.5rem;
 		line-height: 2rem;
 		color: common.$error;
+	}
+	&.upload {
+		.input_area {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row-reverse;
+			label {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 9rem;
+				height: 3.6rem;
+				padding: 1rem;
+				margin-left: 1rem;
+				background-color: common.$primary;
+				color: #fff;
+				text-align: center;
+				cursor: pointer;
+			}
+			.input {
+				width: calc(100% - 10rem);
+				.file_name {
+					overflow-x: auto;
+					display: flex;
+					align-items: center;
+					width: 100%;
+					height: 3.6rem;
+					padding: 0 1rem;
+					border: 0.1rem solid common.$gray8;
+					background-color: var(--mainBg);
+					color: var(--mainTxt);
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					span {
+						&::after {
+							content: ',';
+							padding-right: 0.5rem;
+						}
+						&:last-child {
+							&::after {
+								display: none;
+							}
+						}
+					}
+				}
+				input {
+					@include common.sr-only;
+				}
+			}
+		}
 	}
 }
 // Alert
@@ -791,6 +842,46 @@
 		100% {
 			transform: translate(0, 0);
 			opacity: 0;
+		}
+	}
+}
+
+// upload
+.preview_wrap {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	gap: 1rem;
+	width: calc(100% - 10rem);
+	margin-top: 1rem;
+	.img_wrap {
+		.img_title {
+			display: flex;
+			width: 100%;
+			margin-top: 0.5rem;
+			.title {
+				overflow: hidden;
+				display: block;
+				max-width: calc(100% - 2rem);
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+		.img_area {
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 20rem;
+			height: 20rem;
+			border: 0.1rem solid common.$grayC;
+			.width_full {
+				width: 20rem;
+				height: auto;
+			}
+			.height_full {
+				width: auto;
+				height: 20rem;
+			}
 		}
 	}
 }
