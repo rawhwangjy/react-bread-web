@@ -1,4 +1,3 @@
-import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,18 +14,15 @@ import 'react-quill/dist/quill.snow.css';
 import { fetchCategoryData } from 'actions/category-action';
 
 const BoardCreate = () => {
-	const { category } = useParams();
 	const dispatch = useDispatch();
-	// Select
+
+	// Store
 	const categoryList = useSelector((state) => state.categoryStore.categoryList);
 
+	// Select
 	const options = useMemo(() => {
-		return [];
-	}, []);
-
-	categoryList.map((item) => {
-		return options.push(item.category);
-	});
+		return categoryList.map((item) => item.category);
+	}, [categoryList]);
 
 	const [selectedValue, setSelectedValue] = useState(options[0]);
 
@@ -36,7 +32,6 @@ const BoardCreate = () => {
 
 	const changedSelect = (nextState) => {
 		setSelectedValue(nextState);
-		console.log('선택된 Select', nextState);
 	};
 
 	// Input
@@ -54,29 +49,13 @@ const BoardCreate = () => {
 
 	const changedUpload = (nextState) => {
 		setUploadValue(nextState);
-		console.log('nextState', nextState);
 	};
 
 	const createBoard = () => {
 		const reqData = new FormData();
-		categoryList.filter((item) => {
-			if (selectedValue === item.category) {
-				reqData.append('categoryId', item.id);
-			}
-			return false;
-		});
+		reqData.append('category', selectedValue);
 		reqData.append('title', titleValue);
 		reqData.append('content', contentValue);
-		console.log('typeof uploadValue', uploadValue.length);
-
-		// if (uploadValue) {
-		// 	for (let i = 0; i < uploadValue.length; i++) {
-		// 		reqData.append('fileList', uploadValue[i]);
-		// 		console.log('tessst', uploadValue[i]);
-		// 	}
-		// } else {
-		// 	reqData.append('fileList', '');
-		// }
 		if (uploadValue.length > 0) {
 			for (let i = 0; i < uploadValue.length; i++) {
 				reqData.append('fileList', uploadValue[i]);
@@ -84,6 +63,22 @@ const BoardCreate = () => {
 		}
 
 		dispatch(setBoardData(reqData));
+		openAlert();
+	};
+
+	// Alert
+	const [currentState, setCurrentState] = useState(false);
+	const closeAlert = (nextState) => {
+		setCurrentState(nextState);
+		backWindow();
+	};
+
+	const openAlert = () => {
+		setCurrentState((prevState) => !prevState);
+	};
+
+	const backWindow = () => {
+		window.history.back();
 	};
 
 	return (
@@ -100,17 +95,10 @@ const BoardCreate = () => {
 							onChange={changedSelect}
 						/>
 						<Input
-							titleValue={titleValue}
+							currentValue={titleValue}
 							label='제목'
 							labelHide
 							onChange={changedTitle}
-						/>
-						<Alert
-							// currentState={currentState}
-							type='success'
-							title='Success'
-							message='카테고리를 생성했습니다.'
-							// onClose={closeAlert}
 						/>
 					</div>
 					<div className='form_row'>
@@ -131,13 +119,13 @@ const BoardCreate = () => {
 				</div>
 			</div>
 			<div className='footer_area side'>
-				<Link
-					to={`/board/${category}`}
+				<button
 					type='button'
 					className='btn lg secondary'
+					onClick={backWindow}
 				>
-					목록
-				</Link>
+					<span>목록</span>
+				</button>
 				<button
 					type='button'
 					className='btn lg primary'
@@ -145,6 +133,13 @@ const BoardCreate = () => {
 				>
 					<span>저장</span>
 				</button>
+				<Alert
+					currentState={currentState}
+					type='success'
+					title='Success'
+					message='글을 저장했습니다.'
+					onClose={closeAlert}
+				/>
 			</div>
 		</div>
 	);

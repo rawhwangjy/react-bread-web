@@ -1,8 +1,10 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchBoardListData } from 'actions/board-action';
+import Alert from 'components/Alert';
+
+import { fetchBoardListData, deleteBoardData } from 'actions/board-action';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -10,8 +12,8 @@ const BoardList = () => {
 	const { category } = useParams();
 	const dispatch = useDispatch();
 
+	// Store
 	const boardList = useSelector((state) => state.boardStore.boardList);
-	// const isLoading = useSelector((state) => state.boardStore.isLoading);
 
 	const reqData = useMemo(() => {
 		return {
@@ -22,6 +24,34 @@ const BoardList = () => {
 	useEffect(() => {
 		dispatch(fetchBoardListData(reqData));
 	}, [dispatch, reqData]);
+
+	// Alert
+	const [alertMessage, setAlertMessage] = useState('');
+	const [currentState, setCurrentState] = useState(false);
+
+	const openAlert = () => {
+		setCurrentState((prevState) => !prevState);
+	};
+
+	const closeAlert = (nextState) => {
+		setCurrentState(nextState);
+		dispatch(fetchBoardListData(reqData));
+	};
+
+	// Delete
+	const deleteBoard = (targetId) => {
+		const reqData = {
+			id: targetId,
+		};
+		if (window.confirm('정말 삭제하시겠습니까?')) {
+			dispatch(deleteBoardData(reqData));
+			setAlertMessage('삭제되었습니다');
+			openAlert();
+		} else {
+			setAlertMessage('취소되었습니다');
+			openAlert();
+		}
+	};
 
 	return (
 		<div className='page_container'>
@@ -63,26 +93,33 @@ const BoardList = () => {
 										</td>
 										<td>
 											<div className='list_btns_wrap'>
-												<button
+												<Link
+													to={`/board/${category}/${item.id}/update`}
 													type='button'
-													className='btn md'
-													// onClick={() => onEditText(item)}
+													className='btn sm'
 												>
 													<FontAwesomeIcon
 														icon='fa-solid fa-pencil'
 														aria-label='수정'
 													/>
-												</button>
+												</Link>
 												<button
 													type='button'
-													className='btn md'
-													// onClick={() => deleteCategory(item.id)}
+													className='btn sm'
+													onClick={() => deleteBoard(item.id)}
 												>
 													<FontAwesomeIcon
 														icon='fa-solid fa-trash'
 														aria-label='삭제'
 													/>
 												</button>
+												<Alert
+													currentState={currentState}
+													type='success'
+													title='Success'
+													message={alertMessage}
+													onClose={closeAlert}
+												/>
 											</div>
 										</td>
 									</tr>

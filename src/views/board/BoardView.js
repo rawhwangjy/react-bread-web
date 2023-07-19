@@ -12,38 +12,33 @@ const BoardView = () => {
 
 	const imgRefs = useRef([]);
 
+	// Store
 	const boardView = useSelector((state) => state.boardStore.boardView);
-	// const isLoading = useSelector((state) => state.boardStore.isLoading);
 
-	let filelist = useMemo(() => {
-		return [];
-	}, []);
-
+	// Store // reqData
 	const reqData = useMemo(() => {
 		return {
 			id,
 		};
 	}, [id]);
 
+	const filelist = useMemo(() => {
+		// return JSON.parse(boardView.fileList);
+		if (boardView.fileList) {
+			// setShowBeforeFile((prevState) => !prevState);
+			return JSON.parse(boardView.fileList);
+		}
+	}, [boardView.fileList]);
+	// Filelist
+	// let filelist;
+	// if (boardView.fileList) {
+	// 	filelist = JSON.parse(boardView.fileList);
+	// 	console.log('filelist,filelist,filelist', boardView.fileList);
+	// }
+
 	useEffect(() => {
 		dispatch(fetchBoardData(reqData));
-
-		// filelist
-		if (boardView.fileList !== '') {
-			const target = boardView.fileList?.split(',');
-			console.log('targettarget', typeof target);
-			for (let i = 0; i < target?.length; i++) {
-				const obj = {
-					title: '',
-					url: '',
-				};
-				obj.title = target[i];
-				obj.url = `${API_URL}/views/upload/${target[i]}`;
-				filelist.push(obj);
-			}
-			console.log('이것', filelist);
-		}
-	}, [dispatch, reqData, boardView.fileList, filelist]);
+	}, [dispatch, reqData]);
 
 	const resizeImg = () => {
 		imgRefs.current.forEach((imgRef) => {
@@ -88,21 +83,22 @@ const BoardView = () => {
 							<th scope='row'>첨부파일</th>
 							<td>
 								<div className='preview_wrap'>
-									{filelist.map((image, index) => (
-										<div
-											key={index}
-											className='img_wrap'
-										>
-											<span className='img_area'>
-												<img
-													ref={(ref) => (imgRefs.current[index] = ref)}
-													src={image.url}
-													alt={image.name}
-													onLoad={resizeImg}
-												/>
-											</span>
-										</div>
-									))}
+									{filelist &&
+										filelist.map((image, index) => (
+											<div
+												key={index}
+												className='img_wrap'
+											>
+												<span className='img_area'>
+													<img
+														ref={(ref) => (imgRefs.current[index] = ref)}
+														src={`${API_URL}/views/upload/${image.filename}`}
+														alt={image.originalname}
+														onLoad={resizeImg}
+													/>
+												</span>
+											</div>
+										))}
 								</div>
 							</td>
 						</tr>
