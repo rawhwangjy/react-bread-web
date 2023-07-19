@@ -1,15 +1,132 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from 'react-router-dom';
+import { useEffect, useMemo, useRef } from 'react';
+
+import { API_URL } from 'utils/common.constants';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBoardData } from 'actions/board-action';
 
 const BoardView = () => {
-  const params = useParams();
+	const { id, category } = useParams();
+	const dispatch = useDispatch();
 
-  return (
-    <>
-      <h1>BoardView 페이지</h1>
-      <p>현재 들어온 board 이름 : {params.category}</p>
-      <p>현재 들어온 페이지 id : {params.boardId}</p>
-    </>
-  );
+	const imgRefs = useRef([]);
+
+	const boardView = useSelector((state) => state.boardStore.boardView);
+	// const isLoading = useSelector((state) => state.boardStore.isLoading);
+
+	let filelist = useMemo(() => {
+		return [];
+	}, []);
+
+	const reqData = useMemo(() => {
+		return {
+			id,
+		};
+	}, [id]);
+
+	useEffect(() => {
+		dispatch(fetchBoardData(reqData));
+
+		// filelist
+		if (boardView.fileList !== '') {
+			const target = boardView.fileList?.split(',');
+			console.log('targettarget', typeof target);
+			for (let i = 0; i < target?.length; i++) {
+				const obj = {
+					title: '',
+					url: '',
+				};
+				obj.title = target[i];
+				obj.url = `${API_URL}/views/upload/${target[i]}`;
+				filelist.push(obj);
+			}
+			console.log('이것', filelist);
+		}
+	}, [dispatch, reqData, boardView.fileList, filelist]);
+
+	const resizeImg = () => {
+		imgRefs.current.forEach((imgRef) => {
+			if (imgRef) {
+				const { clientWidth, clientHeight } = imgRef;
+				if (clientWidth > clientHeight) {
+					imgRef.classList.remove('width_full');
+					imgRef.classList.remove('height_full');
+					imgRef.classList.add('width_full');
+				} else {
+					imgRef.classList.remove('width_full');
+					imgRef.classList.remove('height_full');
+					imgRef.classList.add('height_full');
+				}
+			}
+		});
+	};
+
+	return (
+		<div className='page_container'>
+			<div className='title_area'>
+				<h3 className='main_title'>ddd</h3>
+			</div>
+			<div className='content_area'>
+				<table className='table_view'>
+					<colgroup>
+						<col style={{ width: '20%' }} />
+						<col style={{ width: '80%' }} />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th scope='row'>제목</th>
+							<td>{boardView.title}</td>
+						</tr>
+						<tr>
+							<th scope='row'>내용</th>
+							<td>
+								<div dangerouslySetInnerHTML={{ __html: boardView.content }} />
+							</td>
+						</tr>
+						<tr>
+							<th scope='row'>첨부파일</th>
+							<td>
+								<div className='preview_wrap'>
+									{filelist.map((image, index) => (
+										<div
+											key={index}
+											className='img_wrap'
+										>
+											<span className='img_area'>
+												<img
+													ref={(ref) => (imgRefs.current[index] = ref)}
+													src={image.url}
+													alt={image.name}
+													onLoad={resizeImg}
+												/>
+											</span>
+										</div>
+									))}
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div className='footer_area side'>
+				<Link
+					to={`/board/${category}`}
+					type='button'
+					className='btn lg secondary'
+				>
+					목록
+				</Link>
+				<Link
+					to='/board/create'
+					type='button'
+					className='btn lg primary'
+				>
+					글쓰기
+				</Link>
+			</div>
+		</div>
+	);
 };
 
 export default BoardView;

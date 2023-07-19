@@ -42,13 +42,14 @@ header {
 	}
 	.gnb_wrap {
 		height: 100%;
-		ul {
+		> ul {
 			display: flex;
 			align-items: center;
 			height: 100%;
-			li {
+			> li {
+				position: relative;
 				height: 100%;
-				a {
+				> a {
 					display: flex;
 					align-items: center;
 					height: 100%;
@@ -58,6 +59,29 @@ header {
 					color: var(--mainTxt);
 					&.active {
 						border-color: var(--primary);
+					}
+				}
+			}
+		}
+		.sub_gnb_wrap {
+			position: absolute;
+			top: 5.4rem;
+			display: flex;
+			flex-direction: column;
+			width: 15rem;
+			text-align: left;
+			li {
+				width: 100%;
+				a {
+					display: flex;
+					align-items: center;
+					height: 100%;
+					padding: 1rem 1.5rem;
+					background-color: rgba(1, 1, 1, 0.2);
+					font-size: common.$fs-s;
+					color: var(--mainTxt);
+					&:hover {
+						background-color: rgba(1, 1, 1, 0.3);
 					}
 				}
 			}
@@ -180,7 +204,6 @@ main {
 						.editable {
 							display: flex;
 							align-items: center;
-							margin-right: 1rem;
 						}
 					}
 				}

@@ -2,21 +2,28 @@ import PageLayout from 'components/layouts/PageLayout';
 
 import BoardList from 'views/board/BoardList';
 import BoardView from 'views/board/BoardView';
-import BoardEdit from 'views/board/BoardEdit';
+import BoardCreate from 'views/board/BoardCreate';
+import BoardUpdate from 'views/board/BoardUpdate';
+// import EmptyBoard from 'views/board/EmptyBoard';
 
 const RoutesBoard = {
-	path: '/board/:category',
+	path: '/board',
 	element: <PageLayout />,
-	// errorElement: <Error />,
 	children: [
-		{ index: true, element: <BoardList /> },
 		{
-			path: ':boardId',
+			path: ':category',
 			children: [
-				{ index: true, element: <BoardView /> },
-				{ path: 'edit', element: <BoardEdit /> },
+				{ index: true, element: <BoardList /> },
+				{
+					path: ':id',
+					children: [
+						{ index: true, element: <BoardView /> },
+						{ path: 'update', element: <BoardUpdate /> },
+					],
+				},
 			],
 		},
+		{ path: 'create', element: <BoardCreate /> },
 	],
 };
 
