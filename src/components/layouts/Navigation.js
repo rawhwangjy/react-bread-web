@@ -1,18 +1,17 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import ThemeToggle from 'components/ThemeToggle';
 import logo from 'assets/images/visuals/logo.png';
 
 const Navigation = () => {
-	const [firstBoard, setFirstBoard] = useState('');
 	const [showSub, setShowSub] = useState(false);
 
 	const categoryList = useSelector((state) => state.categoryStore.categoryList);
 
-	useEffect(() => {
-		setFirstBoard(categoryList[0]?.category);
+	const firstBoard = useMemo(() => {
+		return categoryList[0]?.category;
 	}, [categoryList]);
 
 	return (
