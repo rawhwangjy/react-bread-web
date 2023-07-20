@@ -15,4 +15,5 @@ export const LocalKey = {
 	goProjectList: 'goProjectList',
 	accessToken: 'accessToken',
 	refreshToken: 'refreshToken',
+	themeMode: 'themeMode',
 };
