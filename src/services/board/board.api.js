@@ -7,7 +7,7 @@ const Api = {
 	boardCreate: '/board/:category/create',
 	boardUpdate: '/board/:category/update/:id',
 	boardDelete: '/board/delete/:id',
-	boardListDelete: '/board/deleteList/:id',
+	boardListDelete: '/board/deleteList/:category',
 };
 
 /**
@@ -68,7 +68,7 @@ export const httpBoardDelete = (reqData) => {
 };
 
 /**
- * @description Board Update Create
+ * @description BoardList Delete
  */
 export const httpBoardListDelete = (reqData) => {
 	return axiosInstance({
