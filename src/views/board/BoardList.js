@@ -3,10 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Alert from 'components/Alert';
+import BoardBody from 'views/board/components/BoardBody';
 
 import { fetchBoardListData, deleteBoardData } from 'actions/board-action';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const BoardList = () => {
 	const { category } = useParams();
@@ -42,19 +41,22 @@ const BoardList = () => {
 	);
 
 	// Delete
-	const deleteBoard = (targetId) => {
-		const reqData = {
-			id: targetId,
-		};
-		if (window.confirm('정말 삭제하시겠습니까?')) {
-			dispatch(deleteBoardData(reqData));
-			setAlertMessage('삭제되었습니다');
-			openAlert();
-		} else {
-			setAlertMessage('취소되었습니다');
-			openAlert();
-		}
-	};
+	const deleteBoard = useCallback(
+		(targetId) => {
+			const reqData = {
+				id: targetId,
+			};
+			if (window.confirm('정말 삭제하시겠습니까?')) {
+				dispatch(deleteBoardData(reqData));
+				setAlertMessage('삭제되었습니다');
+				openAlert();
+			} else {
+				setAlertMessage('취소되었습니다');
+				openAlert();
+			}
+		},
+		[dispatch]
+	);
 
 	return (
 		<div className='page_container'>
@@ -74,62 +76,22 @@ const BoardList = () => {
 								<th scope='col'>btns</th>
 							</tr>
 						</thead>
-						{boardList && boardList.length > 0 ? (
-							<tbody>
-								{boardList.map((item) => (
-									<tr key={item.id}>
-										<td>
-											<Link
-												to={`/board/${category}/${item.id}`}
-												type='button'
-											>
-												{item.title}
-											</Link>
-										</td>
-										<td>
-											<div className='list_btns_wrap'>
-												<Link
-													to={`/board/${category}/${item.id}/update`}
-													type='button'
-													className='btn sm'
-												>
-													<FontAwesomeIcon
-														icon='fa-solid fa-pencil'
-														aria-label='수정'
-													/>
-												</Link>
-												<button
-													type='button'
-													className='btn sm'
-													onClick={() => deleteBoard(item.id)}
-												>
-													<FontAwesomeIcon
-														icon='fa-solid fa-trash'
-														aria-label='삭제'
-													/>
-												</button>
-												<Alert
-													currentState={currentState}
-													type='success'
-													title='Success'
-													message={alertMessage}
-													onClose={closeAlert}
-												/>
-											</div>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						) : (
-							<tbody>
-								<tr>
-									<td colSpan={2}>
-										<p className='no_data'>게시글이 없습니다.</p>
-									</td>
-								</tr>
-							</tbody>
+						{boardList && (
+							<BoardBody
+								boardData={boardList}
+								onChange={deleteBoard}
+							/>
 						)}
 					</table>
+					{currentState && (
+						<Alert
+							currentState={currentState}
+							type='success'
+							title='Success'
+							message={alertMessage}
+							onClose={closeAlert}
+						/>
+					)}
 				</div>
 			</div>
 			<div className='footer_area right'>
