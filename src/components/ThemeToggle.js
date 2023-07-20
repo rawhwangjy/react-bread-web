@@ -59,7 +59,6 @@ const ThemeToggle = (props) => {
 				<input
 					type='radio'
 					id={`leftItem${randomString}`}
-					name={randomString}
 					checked={!currentChecked}
 				/>
 				<label htmlFor={`leftItem${randomString}`}>
@@ -70,7 +69,6 @@ const ThemeToggle = (props) => {
 				<input
 					type='radio'
 					id={`rightItem${randomString}`}
-					name={randomString}
 					checked={currentChecked}
 				/>
 				<label htmlFor={`rightItem${randomString}`}>
