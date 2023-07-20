@@ -77,11 +77,11 @@ header {
 					align-items: center;
 					height: 100%;
 					padding: 1rem 1.5rem;
-					background-color: rgba(1, 1, 1, 0.2);
+					background-color: rgba(var(--mainBg), 0.2);
 					font-size: common.$fs-s;
 					color: var(--mainTxt);
 					&:hover {
-						background-color: rgba(1, 1, 1, 0.3);
+						background-color: var(--subBg);
 					}
 				}
 			}
