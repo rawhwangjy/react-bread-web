@@ -8,3 +8,7 @@ export function getRandomId() {
 	}
 	return randomstring;
 }
+
+export function backWindow() {
+	window.history.back();
+}
