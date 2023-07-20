@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// import { API_URL } from 'utils/common.constants';
+import { backWindow } from 'utils/common.function';
 
 import Alert from 'components/Alert';
 import Input from 'components/Input';
@@ -34,17 +34,17 @@ const BoardUpdate = () => {
 	const [showBeforeFile, setShowBeforeFile] = useState(false);
 
 	const filelist = useMemo(() => {
-		if (boardView.fileList) {
-			setShowBeforeFile((prevState) => !prevState);
+		if (boardView && boardView.fileList) {
+			setShowBeforeFile(true);
 			return JSON.parse(boardView.fileList);
 		}
-	}, [boardView.fileList]);
+	}, [boardView]);
 
 	// Attachment
 	const [uploadValue, setUploadValue] = useState([]);
 	const changedUpload = (nextState) => {
 		setUploadValue(nextState);
-		setShowBeforeFile((prevState) => !prevState);
+		setShowBeforeFile(false);
 	};
 
 	// Select
@@ -68,14 +68,16 @@ const BoardUpdate = () => {
 	};
 
 	// Input
-	const [titleValue, setTitleValue] = useState(boardView.title);
+	const [titleValue, setTitleValue] = useState(boardView && boardView.title);
 
 	const changedTitle = (nextState) => {
 		setTitleValue(nextState);
 	};
 
 	// Editor
-	const [contentValue, setContentValue] = useState(boardView.content);
+	const [contentValue, setContentValue] = useState(
+		boardView && boardView.content
+	);
 
 	// Save
 	const updateBoard = () => {
@@ -103,10 +105,6 @@ const BoardUpdate = () => {
 
 	const openAlert = () => {
 		setCurrentState((prevState) => !prevState);
-	};
-
-	const backWindow = () => {
-		window.history.back();
 	};
 
 	return (
@@ -144,17 +142,17 @@ const BoardUpdate = () => {
 							btnName='찾기'
 							onChange={changedUpload}
 						/>
-						{showBeforeFile && <Preview previewData={filelist} />}
+						{showBeforeFile && filelist && <Preview previewData={filelist} />}
 					</div>
 				</div>
 			</div>
-			<div className='footer_area side'>
+			<div className='footer_area right'>
 				<Link
 					to={`/board/${category}`}
 					type='button'
 					className='btn lg secondary'
 				>
-					목록
+					취소
 				</Link>
 				<button
 					type='button'

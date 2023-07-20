@@ -6,14 +6,13 @@ import { API_URL } from 'utils/common.constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBoardData } from 'actions/board-action';
 
+import { backWindow } from 'utils/common.function';
+
 const BoardView = () => {
-	const { id, category } = useParams();
+	const { id } = useParams();
 	const dispatch = useDispatch();
 
 	const imgRefs = useRef([]);
-
-	// Store
-	const boardView = useSelector((state) => state.boardStore.boardView);
 
 	// Store // reqData
 	const reqData = useMemo(() => {
@@ -22,16 +21,19 @@ const BoardView = () => {
 		};
 	}, [id]);
 
-	// Filelist
-	const filelist = useMemo(() => {
-		if (boardView.fileList) {
-			return JSON.parse(boardView.fileList);
-		}
-	}, [boardView.fileList]);
-
 	useEffect(() => {
 		dispatch(fetchBoardData(reqData));
 	}, [dispatch, reqData]);
+
+	// Store
+	const boardView = useSelector((state) => state.boardStore.boardView);
+
+	// Filelist
+	const filelist = useMemo(() => {
+		if (boardView && boardView.fileList) {
+			return JSON.parse(boardView.fileList);
+		}
+	}, [boardView]);
 
 	// Img Resizing
 	const resizeImg = () => {
@@ -65,12 +67,16 @@ const BoardView = () => {
 					<tbody>
 						<tr>
 							<th scope='row'>제목</th>
-							<td>{boardView.title}</td>
+							<td>{boardView && boardView.title}</td>
 						</tr>
 						<tr>
 							<th scope='row'>내용</th>
 							<td>
-								<div dangerouslySetInnerHTML={{ __html: boardView.content }} />
+								<div
+									dangerouslySetInnerHTML={{
+										__html: boardView && boardView.content,
+									}}
+								/>
 							</td>
 						</tr>
 						<tr>
@@ -99,14 +105,14 @@ const BoardView = () => {
 					</tbody>
 				</table>
 			</div>
-			<div className='footer_area side'>
-				<Link
-					to={`/board/${category}`}
+			<div className='footer_area right'>
+				<button
 					type='button'
 					className='btn lg secondary'
+					onClick={backWindow}
 				>
-					목록
-				</Link>
+					<span>취소</span>
+				</button>
 				<Link
 					to='/board/create'
 					type='button'

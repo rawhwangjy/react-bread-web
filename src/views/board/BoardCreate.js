@@ -13,6 +13,8 @@ import 'react-quill/dist/quill.snow.css';
 
 import { fetchCategoryData } from 'actions/category-action';
 
+import { backWindow } from 'utils/common.function';
+
 const BoardCreate = () => {
 	const dispatch = useDispatch();
 
@@ -75,10 +77,6 @@ const BoardCreate = () => {
 
 	const openAlert = () => {
 		setCurrentState((prevState) => !prevState);
-	};
-
-	const backWindow = () => {
-		window.history.back();
 	};
 
 	return (
