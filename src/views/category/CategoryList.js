@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,7 +26,9 @@ const CategoryList = () => {
 
 	// Input
 	const [currentId, setCurrentId] = useState(0);
+
 	const [currentCategory, setCurrentCategory] = useState('');
+
 	const changedInput = (nextState) => {
 		setCurrentCategory(nextState);
 	};
@@ -44,11 +46,14 @@ const CategoryList = () => {
 		setCurrentState((prevState) => !prevState);
 	};
 
-	const closeAlert = (nextState) => {
-		setCurrentState(nextState);
-		setCurrentId(0);
-		dispatch(fetchCategoryData());
-	};
+	const closeAlert = useCallback(
+		(nextState) => {
+			setCurrentState(nextState);
+			setCurrentId(0);
+			dispatch(fetchCategoryData());
+		},
+		[dispatch]
+	);
 
 	// Update
 	const updateCategory = (target) => {
@@ -62,9 +67,9 @@ const CategoryList = () => {
 	};
 
 	// Delete
-	const deleteCategory = (targetId) => {
+	const deleteCategory = (targetCategory) => {
 		const reqData = {
-			id: targetId,
+			category: targetCategory,
 		};
 		if (window.confirm('정말 삭제하시겠습니까?')) {
 			dispatch(deleteCategoryData(reqData));
@@ -159,7 +164,7 @@ const CategoryList = () => {
 												<button
 													type='button'
 													className='btn sm'
-													onClick={() => deleteCategory(item.id)}
+													onClick={() => deleteCategory(item.category)}
 												>
 													<FontAwesomeIcon
 														icon='fa-solid fa-trash'
