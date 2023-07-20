@@ -5,7 +5,7 @@ const Api = {
 	categoryList: '/board/category/categoryList',
 	categoryCreate: '/board/category/create',
 	categoryUpdate: '/board/category/update/:id',
-	CategoryDelete: '/board/category/delete/:id',
+	CategoryDelete: '/board/category/delete/:category',
 };
 
 /**
