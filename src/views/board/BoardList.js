@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,10 +33,13 @@ const BoardList = () => {
 		setCurrentState((prevState) => !prevState);
 	};
 
-	const closeAlert = (nextState) => {
-		setCurrentState(nextState);
-		dispatch(fetchBoardListData(reqData));
-	};
+	const closeAlert = useCallback(
+		(nextState) => {
+			setCurrentState(nextState);
+			dispatch(fetchBoardListData(reqData));
+		},
+		[dispatch, reqData]
+	);
 
 	// Delete
 	const deleteBoard = (targetId) => {
@@ -71,15 +74,7 @@ const BoardList = () => {
 								<th scope='col'>btns</th>
 							</tr>
 						</thead>
-						{boardList.length === 0 ? (
-							<tbody>
-								<tr>
-									<td colSpan={2}>
-										<p className='no_data'>게시글이 없습니다.</p>
-									</td>
-								</tr>
-							</tbody>
-						) : (
+						{boardList && boardList.length > 0 ? (
 							<tbody>
 								{boardList.map((item) => (
 									<tr key={item.id}>
@@ -124,6 +119,14 @@ const BoardList = () => {
 										</td>
 									</tr>
 								))}
+							</tbody>
+						) : (
+							<tbody>
+								<tr>
+									<td colSpan={2}>
+										<p className='no_data'>게시글이 없습니다.</p>
+									</td>
+								</tr>
 							</tbody>
 						)}
 					</table>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,10 +13,14 @@ const CategoryCreate = () => {
 
 	// Alert
 	const [currentState, setCurrentState] = useState(false);
-	const closeAlert = (nextState) => {
-		setCurrentState(nextState);
-		navigate('/category');
-	};
+
+	const closeAlert = useCallback(
+		(nextState) => {
+			setCurrentState(nextState);
+			navigate('/category');
+		},
+		[navigate]
+	);
 
 	const openAlert = () => {
 		setCurrentState((prevState) => !prevState);
@@ -24,6 +28,7 @@ const CategoryCreate = () => {
 
 	// Input
 	const [currentValue, setCurrentValue] = useState('');
+
 	const changedInput = (nextState) => {
 		setCurrentValue(nextState);
 	};
