@@ -30,6 +30,11 @@ export const fetchBoardListData = (reqData) => {
 export const fetchBoardData = (reqData) => {
 	return async (dispatch) => {
 		dispatch(boardActions.isLoading({ isLoading: true }));
+		dispatch(
+			boardActions.getBoard({
+				boardView: [],
+			})
+		);
 		const response = await httpGetBoard(reqData);
 		try {
 			console.log('ok');
