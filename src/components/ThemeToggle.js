@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { getRandomId } from 'utils/common.function';
 
@@ -7,13 +7,16 @@ import { LocalKey } from 'utils/common.constants';
 const ThemeToggle = (props) => {
 	const randomString = getRandomId();
 
-	const [currentType, setCurrentType] = useState(
-		window.matchMedia('(prefers-color-scheme: dark)').matches
-	); // 다크면 true
+	const currentType = useMemo(() => {
+		return window.matchMedia('(prefers-color-scheme: dark)').matches;
+	}, []);
+	// const [currentType, setCurrentType] = useState(
+	// 	window.matchMedia('(prefers-color-scheme: dark)').matches
+	// ); // 다크면 true
 
 	const [currentClass, setCurrentClass] = useState('');
 	const currentLocalType = localStorage.getItem(LocalKey.themeMode);
-	const [currentChecked, setCurrentChecked] = useState(
+	const [defaultChecked, setDefaultChecked] = useState(
 		currentLocalType === null
 			? true
 			: currentLocalType === 'dark'
@@ -28,11 +31,11 @@ const ThemeToggle = (props) => {
 				currentType ? 'dark' : 'light'
 			);
 			setCurrentClass(currentType ? 'dark' : 'light');
-			setCurrentChecked(currentType);
+			setDefaultChecked(currentType);
 		} else {
 			document.documentElement.setAttribute('color-mode', currentLocalType);
 			setCurrentClass(currentLocalType);
-			setCurrentChecked(currentLocalType === 'dark' ? true : false);
+			setDefaultChecked(currentLocalType === 'dark' ? true : false);
 		}
 	}, [currentType, currentLocalType]);
 
@@ -40,26 +43,21 @@ const ThemeToggle = (props) => {
 		checkFirst();
 	}, [checkFirst]);
 
-	const onToggle = () => {
-		localStorage.setItem(LocalKey.themeMode, !currentType ? 'dark' : 'light');
-		setCurrentType(!currentType);
-
-		document.documentElement.setAttribute(
-			'color-mode',
-			currentType ? 'dark' : 'light'
-		);
+	const onToggle = (mode) => {
+		localStorage.setItem(LocalKey.themeMode, mode);
+		setCurrentClass(mode);
+		document.documentElement.setAttribute('color-mode', mode);
 	};
 
 	return (
-		<div
-			className={`double_tootle_wrap theme_toggle ${currentClass}`}
-			onChange={onToggle}
-		>
+		<div className={`double_tootle_wrap theme_toggle ${currentClass}`}>
 			<div className='toggle_item'>
 				<input
 					type='radio'
 					id={`leftItem${randomString}`}
-					checked={!currentChecked}
+					name={randomString}
+					defaultChecked={!defaultChecked}
+					onChange={() => onToggle('light')}
 				/>
 				<label htmlFor={`leftItem${randomString}`}>
 					<span>{props.leftItem}</span>
@@ -69,7 +67,9 @@ const ThemeToggle = (props) => {
 				<input
 					type='radio'
 					id={`rightItem${randomString}`}
-					checked={currentChecked}
+					name={randomString}
+					defaultChecked={defaultChecked}
+					onChange={() => onToggle('dark')}
 				/>
 				<label htmlFor={`rightItem${randomString}`}>
 					<span>{props.rightItem}</span>
