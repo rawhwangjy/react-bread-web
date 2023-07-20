@@ -31,11 +31,8 @@ const BoardUpdate = () => {
 	}, [id]);
 
 	// Filelist
-	// let filelist;
-	// if (boardView.fileList) {
-	// 	filelist = JSON.parse(boardView.fileList);
-	// }
 	const [showBeforeFile, setShowBeforeFile] = useState(false);
+
 	const filelist = useMemo(() => {
 		if (boardView.fileList) {
 			setShowBeforeFile((prevState) => !prevState);
@@ -51,22 +48,19 @@ const BoardUpdate = () => {
 	};
 
 	// Select
-	const options = useMemo(() => {
-		return [];
-	}, []);
-
-	categoryList.map((item) => {
-		return options.push(item.category);
-	});
-
 	const [selectedValue, setSelectedValue] = useState(category);
+
+	const options = useMemo(() => {
+		const optionsArray = [];
+		categoryList.map((item) => {
+			return optionsArray.push(item.category);
+		});
+		return optionsArray;
+	}, [categoryList]);
 
 	useEffect(() => {
 		dispatch(fetchCategoryData());
 		dispatch(fetchBoardData(reqData));
-		// if (boardView.fileList !== '') {
-		// 	setShowBeforeFile((prevState) => !prevState);
-		// }
 	}, [dispatch, reqData]);
 
 	const changedSelect = (nextState) => {
