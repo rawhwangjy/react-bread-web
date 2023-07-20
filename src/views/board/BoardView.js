@@ -22,24 +22,18 @@ const BoardView = () => {
 		};
 	}, [id]);
 
+	// Filelist
 	const filelist = useMemo(() => {
-		// return JSON.parse(boardView.fileList);
 		if (boardView.fileList) {
-			// setShowBeforeFile((prevState) => !prevState);
 			return JSON.parse(boardView.fileList);
 		}
 	}, [boardView.fileList]);
-	// Filelist
-	// let filelist;
-	// if (boardView.fileList) {
-	// 	filelist = JSON.parse(boardView.fileList);
-	// 	console.log('filelist,filelist,filelist', boardView.fileList);
-	// }
 
 	useEffect(() => {
 		dispatch(fetchBoardData(reqData));
 	}, [dispatch, reqData]);
 
+	// Img Resizing
 	const resizeImg = () => {
 		imgRefs.current.forEach((imgRef) => {
 			if (imgRef) {
