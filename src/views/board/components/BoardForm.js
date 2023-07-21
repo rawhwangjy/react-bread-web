@@ -71,15 +71,11 @@ const BoardForm = ({
 	};
 
 	// Attachment
-	// const [uploadValue, setUploadValue] = useState([]);
-
 	const changedUpload = (nextState) => {
 		if (boardData) {
 			setShowBeforeFile((prevState) => !prevState);
 		}
-		// setUploadValue(nextState);
 		onChangeUpload(nextState);
-		console.log('자식 요소의 Upload', nextState);
 	};
 
 	return (

@@ -21,7 +21,6 @@ const Toast = ({ showToast, message, duration, onChange }) => {
 	};
 
 	useEffect(() => {
-		console.log('현재 초', seconds);
 		setActiveToast((prevState) => !prevState);
 		const timer = setTimeout(() => {
 			onChange(false);

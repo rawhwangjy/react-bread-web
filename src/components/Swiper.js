@@ -73,7 +73,6 @@ const Swiper = ({ options, children }) => {
 
 	const moveTo = (clicked) => {
 		const steps = Math.abs(clicked - state.currentSlide);
-		console.log('steps', steps);
 		if (state.currentSlide < clicked) {
 			for (let i = 0; i < steps; i++) {
 				onNext();

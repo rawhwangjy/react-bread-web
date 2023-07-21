@@ -72,8 +72,6 @@ const BoardUpdate = () => {
 		reqData.append('title', titleValue);
 		reqData.append('content', contentValue);
 		if (uploadValue.length > 0) {
-			console.log('upload 저장 => uploadValue', uploadValue);
-			console.log('upload 저장 => filelist', filelist);
 			if (JSON.stringify(uploadValue) === JSON.stringify(filelist)) {
 				for (let i = 0; i < uploadValue.length; i++) {
 					reqData.append('fileList', JSON.stringify(uploadValue[i]));
@@ -84,7 +82,6 @@ const BoardUpdate = () => {
 				}
 			}
 		}
-		console.log('upload => 저장', uploadValue);
 
 		dispatch(updateBoardData(reqData));
 		openAlert();
