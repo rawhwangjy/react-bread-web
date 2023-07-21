@@ -1,19 +1,13 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setBoardData } from 'actions/board-action';
-
 import Alert from 'components/Alert';
-import Input from 'components/Input';
-import Select from 'components/Select';
-import Upload from 'components/Upload';
-
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-
-import { fetchCategoryData } from 'actions/category-action';
+import BoardForm from 'views/board/components/BoardForm';
 
 import { backWindow } from 'utils/common.function';
+
+import { setBoardData } from 'actions/board-action';
+import { fetchCategoryData } from 'actions/category-action';
 
 const BoardCreate = () => {
 	const dispatch = useDispatch();
@@ -21,16 +15,12 @@ const BoardCreate = () => {
 	// Store
 	const categoryList = useSelector((state) => state.categoryStore.categoryList);
 
-	// Select
-	const options = useMemo(() => {
-		return categoryList.map((item) => item.category);
-	}, [categoryList]);
-
-	const [selectedValue, setSelectedValue] = useState(options[0]);
-
 	useEffect(() => {
 		dispatch(fetchCategoryData());
 	}, [dispatch]);
+
+	// Select
+	const [selectedValue, setSelectedValue] = useState('');
 
 	const changedSelect = (nextState) => {
 		setSelectedValue(nextState);
@@ -46,6 +36,10 @@ const BoardCreate = () => {
 	// Editor
 	const [contentValue, setContentValue] = useState('');
 
+	const changedContent = (nextState) => {
+		setContentValue(nextState);
+	};
+
 	// Attachment
 	const [uploadValue, setUploadValue] = useState([]);
 
@@ -53,7 +47,7 @@ const BoardCreate = () => {
 		setUploadValue(nextState);
 	};
 
-	const createBoard = () => {
+	const createBoard = useCallback(() => {
 		const reqData = new FormData();
 		reqData.append('category', selectedValue);
 		reqData.append('title', titleValue);
@@ -66,7 +60,7 @@ const BoardCreate = () => {
 
 		dispatch(setBoardData(reqData));
 		openAlert();
-	};
+	}, [dispatch, selectedValue, titleValue, contentValue, uploadValue]);
 
 	// Alert
 	const [currentState, setCurrentState] = useState(false);
@@ -85,36 +79,13 @@ const BoardCreate = () => {
 				<h3 className='main_title'>글 쓰기</h3>
 			</div>
 			<div className='content_area'>
-				<div className='form_area'>
-					<div className='form_row flex'>
-						<Select
-							options={options}
-							selectedValue={selectedValue}
-							onChange={changedSelect}
-						/>
-						<Input
-							currentValue={titleValue}
-							label='제목'
-							labelHide
-							onChange={changedTitle}
-						/>
-					</div>
-					<div className='form_row'>
-						<div className='editor_wrap'>
-							<ReactQuill
-								theme='snow'
-								className='quill_editor'
-								onChange={setContentValue}
-							/>
-						</div>
-					</div>
-					<div className='form_row'>
-						<Upload
-							btnName='찾기'
-							onChange={changedUpload}
-						/>
-					</div>
-				</div>
+				<BoardForm
+					selectData={categoryList}
+					onChangeSelect={changedSelect}
+					onChangeTitle={changedTitle}
+					onChangeContent={changedContent}
+					onChangeUpload={changedUpload}
+				/>
 			</div>
 			<div className='footer_area side'>
 				<button

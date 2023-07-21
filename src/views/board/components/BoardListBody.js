@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const BoardBody = ({ boardData, onChange }) => {
+const BoardListBody = ({ boardData, onChange }) => {
 	const { category } = useParams();
 
 	const submitBoardId = (targetId) => {
@@ -64,4 +64,4 @@ const BoardBody = ({ boardData, onChange }) => {
 	);
 };
 
-export default BoardBody;
+export default BoardListBody;

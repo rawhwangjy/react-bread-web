@@ -1,12 +1,12 @@
-import { useParams, Link } from 'react-router-dom';
 import { useEffect, useMemo, useRef } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { API_URL } from 'utils/common.constants';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBoardData } from 'actions/board-action';
-
 import { backWindow } from 'utils/common.function';
+import useFilelistToObject from 'hooks/useFilelistToObject';
+
+import { fetchBoardData } from 'actions/board-action';
 
 const BoardView = () => {
 	const { id } = useParams();
@@ -29,11 +29,7 @@ const BoardView = () => {
 	const boardView = useSelector((state) => state.boardStore.boardView);
 
 	// Filelist
-	const filelist = useMemo(() => {
-		if (boardView && boardView.fileList) {
-			return JSON.parse(boardView.fileList);
-		}
-	}, [boardView]);
+	const filelist = useFilelistToObject(boardView);
 
 	// Img Resizing
 	const resizeImg = () => {
@@ -105,13 +101,13 @@ const BoardView = () => {
 					</tbody>
 				</table>
 			</div>
-			<div className='footer_area right'>
+			<div className='footer_area side'>
 				<button
 					type='button'
 					className='btn lg secondary'
 					onClick={backWindow}
 				>
-					<span>취소</span>
+					<span>목록</span>
 				</button>
 				<Link
 					to='/board/create'

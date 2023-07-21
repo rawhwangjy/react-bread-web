@@ -1,17 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { backWindow } from 'utils/common.function';
-
 import Alert from 'components/Alert';
-import Input from 'components/Input';
-import Select from 'components/Select';
-import Upload from 'components/Upload';
-import Preview from 'components/Preview';
+import BoardForm from 'views/board/components/BoardForm';
 
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { backWindow } from 'utils/common.function';
+import useFilelistToObject from 'hooks/useFilelistToObject';
 
 import { fetchCategoryData } from 'actions/category-action';
 import { fetchBoardData, updateBoardData } from 'actions/board-action';
@@ -30,45 +25,22 @@ const BoardUpdate = () => {
 		};
 	}, [id]);
 
-	// Filelist
-	const [showBeforeFile, setShowBeforeFile] = useState(false);
-
-	const filelist = useMemo(() => {
-		if (boardView && boardView.fileList) {
-			setShowBeforeFile(true);
-			return JSON.parse(boardView.fileList);
-		}
-	}, [boardView]);
-
-	// Attachment
-	const [uploadValue, setUploadValue] = useState([]);
-	const changedUpload = (nextState) => {
-		setUploadValue(nextState);
-		setShowBeforeFile(false);
-	};
-
-	// Select
-	const [selectedValue, setSelectedValue] = useState(category);
-
-	const options = useMemo(() => {
-		const optionsArray = [];
-		categoryList.map((item) => {
-			return optionsArray.push(item.category);
-		});
-		return optionsArray;
-	}, [categoryList]);
-
 	useEffect(() => {
 		dispatch(fetchCategoryData());
 		dispatch(fetchBoardData(reqData));
 	}, [dispatch, reqData]);
+
+	// Select
+	const [selectedValue, setSelectedValue] = useState(boardView ? category : '');
 
 	const changedSelect = (nextState) => {
 		setSelectedValue(nextState);
 	};
 
 	// Input
-	const [titleValue, setTitleValue] = useState(boardView && boardView.title);
+	const [titleValue, setTitleValue] = useState(
+		boardView ? boardView.title : ''
+	);
 
 	const changedTitle = (nextState) => {
 		setTitleValue(nextState);
@@ -76,25 +48,55 @@ const BoardUpdate = () => {
 
 	// Editor
 	const [contentValue, setContentValue] = useState(
-		boardView && boardView.content
+		boardView ? boardView.content : ''
 	);
 
+	const changedContent = (nextState) => {
+		setContentValue(nextState);
+	};
+
+	// Attachment
+	const filelist = useFilelistToObject(boardView);
+
+	const [uploadValue, setUploadValue] = useState(boardView ? filelist : []);
+
+	const changedUpload = (nextState) => {
+		setUploadValue(nextState);
+	};
+
 	// Save
-	const updateBoard = () => {
+	const updateBoard = useCallback(() => {
 		const reqData = new FormData();
 		reqData.append('id', id);
 		reqData.append('category', selectedValue);
 		reqData.append('title', titleValue);
 		reqData.append('content', contentValue);
 		if (uploadValue.length > 0) {
-			for (let i = 0; i < uploadValue.length; i++) {
-				reqData.append('fileList', uploadValue[i]);
+			console.log('upload 저장 => uploadValue', uploadValue);
+			console.log('upload 저장 => filelist', filelist);
+			if (JSON.stringify(uploadValue) === JSON.stringify(filelist)) {
+				for (let i = 0; i < uploadValue.length; i++) {
+					reqData.append('fileList', JSON.stringify(uploadValue[i]));
+				}
+			} else {
+				for (let i = 0; i < uploadValue.length; i++) {
+					reqData.append('fileList', uploadValue[i]);
+				}
 			}
 		}
+		console.log('upload => 저장', uploadValue);
 
 		dispatch(updateBoardData(reqData));
 		openAlert();
-	};
+	}, [
+		dispatch,
+		id,
+		selectedValue,
+		titleValue,
+		contentValue,
+		uploadValue,
+		filelist,
+	]);
 
 	// Alert
 	const [currentState, setCurrentState] = useState(false);
@@ -113,38 +115,14 @@ const BoardUpdate = () => {
 				<h3 className='main_title'>ddd</h3>
 			</div>
 			<div className='content_area'>
-				<div className='form_area'>
-					<div className='form_row flex'>
-						<Select
-							options={options}
-							selectedValue={selectedValue}
-							onChange={changedSelect}
-						/>
-						<Input
-							currentValue={titleValue}
-							label='제목'
-							labelHide
-							onChange={changedTitle}
-						/>
-					</div>
-					<div className='form_row'>
-						<div className='editor_wrap'>
-							<ReactQuill
-								theme='snow'
-								className='quill_editor'
-								value={contentValue}
-								onChange={setContentValue}
-							/>
-						</div>
-					</div>
-					<div className='form_row'>
-						<Upload
-							btnName='찾기'
-							onChange={changedUpload}
-						/>
-						{showBeforeFile && filelist && <Preview previewData={filelist} />}
-					</div>
-				</div>
+				<BoardForm
+					selectData={categoryList}
+					boardData={boardView}
+					onChangeSelect={changedSelect}
+					onChangeTitle={changedTitle}
+					onChangeContent={changedContent}
+					onChangeUpload={changedUpload}
+				/>
 			</div>
 			<div className='footer_area right'>
 				<Link

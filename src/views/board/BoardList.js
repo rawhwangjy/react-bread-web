@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Alert from 'components/Alert';
-import BoardBody from 'views/board/components/BoardBody';
+import BoardListBody from 'views/board/components/BoardListBody';
 
 import { fetchBoardListData, deleteBoardData } from 'actions/board-action';
 
@@ -77,7 +77,7 @@ const BoardList = () => {
 							</tr>
 						</thead>
 						{boardList && (
-							<BoardBody
+							<BoardListBody
 								boardData={boardList}
 								onChange={deleteBoard}
 							/>
