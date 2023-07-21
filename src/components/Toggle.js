@@ -1,7 +1,7 @@
-import { getRandomId } from 'utils/common.function';
+import useRandomIdMaker from 'hooks/useRandomIdMaker';
 
 const Toggle = ({ selectedValue, onChange }) => {
-	const randomString = getRandomId();
+	const randomString = useRandomIdMaker();
 
 	const onToggle = (e) => {
 		onChange(e.target.checked);

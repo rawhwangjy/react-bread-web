@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { getRandomId } from 'utils/common.function';
+import useRandomIdMaker from 'hooks/useRandomIdMaker';
 
 const Input = ({
 	currentValue,
@@ -10,7 +10,7 @@ const Input = ({
 	labelId,
 	onChange,
 }) => {
-	const randomstring = getRandomId();
+	const randomstring = useRandomIdMaker();
 	const [showDelete, setShowDelete] = useState(false);
 
 	const changeInput = (e) => {

@@ -10,7 +10,6 @@ const Select = ({ options, selectedValue, onChange }) => {
 	const changeSelect = (e) => {
 		setOpenState((prevState) => !prevState);
 		onChange(e.target.innerText);
-		console.log('셀렏트 안', e.target.innerText);
 	};
 
 	return (

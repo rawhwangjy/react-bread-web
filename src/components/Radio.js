@@ -1,4 +1,4 @@
-import { getRandomId } from 'utils/common.function';
+import useRandomIdMaker from 'hooks/useRandomIdMaker';
 
 const Radio = ({
 	label,
@@ -10,7 +10,7 @@ const Radio = ({
 	styles,
 	onChange,
 }) => {
-	const randomString = getRandomId();
+	const randomString = useRandomIdMaker();
 
 	const onCheck = (e) => {
 		onChange(e.target.value);

@@ -1,18 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { getRandomId } from 'utils/common.function';
+import useRandomIdMaker from 'hooks/useRandomIdMaker';
 
 import { LocalKey } from 'utils/common.constants';
 
 const ThemeToggle = (props) => {
-	const randomString = getRandomId();
+	const randomString = useRandomIdMaker();
 
 	const currentType = useMemo(() => {
 		return window.matchMedia('(prefers-color-scheme: dark)').matches;
 	}, []);
-	// const [currentType, setCurrentType] = useState(
-	// 	window.matchMedia('(prefers-color-scheme: dark)').matches
-	// ); // 다크면 true
 
 	const [currentClass, setCurrentClass] = useState('');
 	const currentLocalType = localStorage.getItem(LocalKey.themeMode);

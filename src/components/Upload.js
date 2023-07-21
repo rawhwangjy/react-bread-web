@@ -1,9 +1,8 @@
 import { useState, useRef } from 'react';
-import { getRandomId } from 'utils/common.function';
-// import { API_URL } from 'utils/common.constants';
+import useRandomIdMaker from 'hooks/useRandomIdMaker';
 
-const Upload = ({ btnName, uploadValue, onChange }) => {
-	const randomstring = getRandomId();
+const Upload = ({ btnName, onChange }) => {
+	const randomstring = useRandomIdMaker();
 
 	const imgRefs = useRef([]);
 	const [uploadItems, setUploadItems] = useState([]);
