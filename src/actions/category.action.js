@@ -1,4 +1,4 @@
-import { categoryActions } from 'reducers/category-slice';
+import { categoryActions } from 'reducers/category.slice';
 import {
 	httpGetCategoryList,
 	httpSetCategory,

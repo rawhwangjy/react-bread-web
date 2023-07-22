@@ -1,4 +1,4 @@
-import { boardActions } from 'reducers/board-slice';
+import { boardActions } from 'reducers/board.slice';
 import {
 	httpGetBoardList,
 	httpGetBoard,

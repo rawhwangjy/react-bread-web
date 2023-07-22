@@ -8,8 +8,8 @@ import BoardForm from 'views/board/components/BoardForm';
 import { backWindow } from 'utils/common.function';
 import useFilelistToObject from 'hooks/useFilelistToObject';
 
-import { fetchCategoryData } from 'actions/category-action';
-import { fetchBoardData, updateBoardData } from 'actions/board-action';
+import { fetchCategoryData } from 'actions/category.action';
+import { fetchBoardData, updateBoardData } from 'actions/board.action';
 
 const BoardUpdate = () => {
 	const { id, category } = useParams();

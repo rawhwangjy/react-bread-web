@@ -6,9 +6,9 @@ import {
 	fetchCategoryData,
 	updateCategoryData,
 	deleteCategoryData,
-} from 'actions/category-action';
+} from 'actions/category.action';
 
-import { deleteBoardListData } from 'actions/board-action';
+import { deleteBoardListData } from 'actions/board.action';
 
 import Input from 'components/Input';
 import Alert from 'components/Alert';

@@ -6,8 +6,8 @@ import BoardForm from 'views/board/components/BoardForm';
 
 import { backWindow } from 'utils/common.function';
 
-import { setBoardData } from 'actions/board-action';
-import { fetchCategoryData } from 'actions/category-action';
+import { setBoardData } from 'actions/board.action';
+import { fetchCategoryData } from 'actions/category.action';
 
 const BoardCreate = () => {
 	const dispatch = useDispatch();

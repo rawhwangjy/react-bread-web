@@ -6,7 +6,7 @@ import { API_URL } from 'utils/common.constants';
 import { backWindow } from 'utils/common.function';
 import useFilelistToObject from 'hooks/useFilelistToObject';
 
-import { fetchBoardData } from 'actions/board-action';
+import { fetchBoardData } from 'actions/board.action';
 
 const BoardView = () => {
 	const { id } = useParams();

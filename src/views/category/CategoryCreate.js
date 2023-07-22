@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { setCategoryData } from 'actions/category-action';
+import { setCategoryData } from 'actions/category.action';
 
 import Input from 'components/Input';
 import Alert from 'components/Alert';

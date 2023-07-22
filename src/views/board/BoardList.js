@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Alert from 'components/Alert';
 import BoardListBody from 'views/board/components/BoardListBody';
 
-import { fetchBoardListData, deleteBoardData } from 'actions/board-action';
+import { fetchBoardListData, deleteBoardData } from 'actions/board.action';
 
 const BoardList = () => {
 	const { category } = useParams();
