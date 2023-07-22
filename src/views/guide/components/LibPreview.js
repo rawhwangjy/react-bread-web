@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBoardData } from 'actions/board-action';
+import { fetchBoardData } from 'actions/board.action';
 
 import Code from 'views/guide/Code';
 import Preview from 'components/Preview';
