@@ -1,16 +1,16 @@
-import MainLayout from 'components/layouts/PageLayout';
+import PageLayout from 'components/layouts/PageLayout';
 
 import ProjectList from 'views/project/ProjectList';
 import ProjectView from 'views/project/ProjectView';
 
 const RoutesBoard = {
 	path: '/project',
-	element: <MainLayout />,
+	element: <PageLayout />,
 	// errorElement: <Error />,
 	children: [
 		{ index: true, element: <ProjectList /> },
 		{
-			path: ':projectId',
+			path: ':id',
 			children: [{ index: true, element: <ProjectView /> }],
 		},
 	],
