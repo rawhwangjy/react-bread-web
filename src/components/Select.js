@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Select = ({ options, selectedValue, onChange }) => {
+const Select = ({ options, selectedValue, className, onChange }) => {
 	const [openState, setOpenState] = useState(false);
 
 	const clickSelect = () => {
@@ -13,7 +13,7 @@ const Select = ({ options, selectedValue, onChange }) => {
 	};
 
 	return (
-		<div className={`select_wrap ${openState ? 'active' : ''}`}>
+		<div className={`select_wrap ${openState ? 'active' : ''} ${className}`}>
 			<button
 				type='button'
 				className='selected'
