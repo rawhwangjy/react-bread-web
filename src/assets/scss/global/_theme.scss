@@ -8,7 +8,7 @@
 
 	// Font
 	--mainTxt: #fff;
-	--subTxt: #081481;
+	--subTxt: #999;
 	--mainTxtReverse: #333;
 	--sameTxtLight: #fff;
 	--sameTxtDark: #333;
@@ -18,6 +18,8 @@
 	--primaryLight: #d0f0fc;
 	--primaryDark: #081481;
 	--primaryBg: #f5fcff;
+
+	--primaryReverse: #d0f0fc;
 }
 :root[color-mode='light'] {
 	// Background
@@ -29,7 +31,7 @@
 
 	// Font
 	--mainTxt: #333;
-	--subTxt: #081481;
+	--subTxt: #999;
 	--mainTxtReverse: #fff;
 	--sameTxtLight: #fff;
 	--sameTxtDark: #333;
@@ -39,4 +41,6 @@
 	--primaryLight: #d0f0fc;
 	--primaryDark: #081481;
 	--primaryBg: #f5fcff;
+
+	--primaryReverse: #081481;
 }
