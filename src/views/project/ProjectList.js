@@ -1,10 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { cloneDeep } from 'lodash';
 
 import Select from 'components/Select';
+import Pagination from 'components/Pagination';
+
+import { LocalKey } from 'utils/common.constants';
 
 import {
 	fetchProjectListData,
@@ -16,19 +19,46 @@ const ProjectList = () => {
 	const { category } = useParams();
 	const dispatch = useDispatch();
 
+	// contant
+	const WINDOW_WIDTH = window.innerWidth;
+
 	// Store
-	const projectList = useSelector((state) => state.projectStore.projectList);
 	const [originProjectList, setOriginProjectList] = useState([]);
+	let projectList = useSelector((state) => state.projectStore.projectList);
+	const [mappingPojectList, setMappingPojectList] = useState([]);
 
 	useEffect(() => {
 		dispatch(fetchProjectListData());
 	}, [dispatch]);
+
+	const dataSlicing = (targetData, startOffset, endOffset) => {
+		return cloneDeep(targetData)
+			.sort((a, b) => Number(b.id) - Number(a.id))
+			.slice(startOffset, endOffset);
+	};
+
+	const dataSlicingInit = useCallback(
+		(startOffset, endOffset) => {
+			const slicedData = dataSlicing(
+				projectList,
+				0,
+				WINDOW_WIDTH > 768 ? 6 : 2
+			);
+			setMappingPojectList(slicedData);
+		},
+		[projectList, WINDOW_WIDTH]
+	);
+
+	useEffect(() => {
+		dataSlicingInit();
+	}, [dataSlicingInit]);
 
 	// 전체
 	const options = ['전체', '연도별', '타입별'];
 	const [defaultValue, setDefaultValue] = useState(options[0]);
 	const changedDefaultFilter = (nextState) => {
 		setDefaultValue(nextState);
+		dispatch(fetchProjectListData());
 	};
 
 	// 연도별
@@ -45,9 +75,6 @@ const ProjectList = () => {
 		});
 		const removeSame = new Set(allYears);
 		const makeArray = [...removeSame];
-		makeArray.sort((a, b) => {
-			return Number(b) - Number(a);
-		});
 		makeArray.unshift('전체');
 		return makeArray;
 	}, [originProjectList]);
@@ -83,6 +110,16 @@ const ProjectList = () => {
 			dispatch(fetchProjectListTypeData(reqData));
 		}
 	};
+
+	// 페이징
+	const onPageMove = useCallback(
+		(targetPage, startOffset, endOffset) => {
+			const slicedData = dataSlicing(projectList, startOffset, endOffset);
+			setMappingPojectList(slicedData);
+			localStorage.setItem(LocalKey.lastPageNum, targetPage);
+		},
+		[projectList]
+	);
 
 	return (
 		<div className='page_container'>
@@ -120,7 +157,7 @@ const ProjectList = () => {
 						)}
 					</div>
 					<div className='project_list'>
-						{projectList.map((project, index) => (
+						{mappingPojectList.map((project, index) => (
 							<div
 								className='project_wrap'
 								key={`project${index}`}
@@ -174,16 +211,23 @@ const ProjectList = () => {
 							</div>
 						))}
 					</div>
+					{originProjectList !== 0 && (
+						<Pagination
+							totalDataLength={projectList.length}
+							dataPerPage={WINDOW_WIDTH > 768 ? 6 : 2}
+							onChange={onPageMove}
+						/>
+					)}
 				</div>
 			</div>
 			<div className='footer_area right'>
-				<Link
+				{/* <Link
 					to='/board/create'
 					type='button'
 					className='btn lg primary'
 				>
 					글쓰기
-				</Link>
+				</Link> */}
 			</div>
 		</div>
 	);
