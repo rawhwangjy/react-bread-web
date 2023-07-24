@@ -680,6 +680,7 @@
 	.swiper {
 		overflow: hidden;
 		position: relative;
+		width: 100%;
 		height: 100%;
 		.swiper_panels {
 			box-sizing: content-box;
@@ -758,6 +759,9 @@
 				background-color: common.$disabled-bg;
 				&.active {
 					background-color: common.$primary;
+				}
+				+ .indicator {
+					margin-left: 1rem;
 				}
 			}
 			+ li {
