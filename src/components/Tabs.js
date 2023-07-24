@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 const Tabs = ({ tabTitles, children }) => {
 	const [selectedTab, setSelectedTab] = useState(0);
@@ -10,11 +10,13 @@ const Tabs = ({ tabTitles, children }) => {
 		setSelectedTab(index);
 	};
 
-	useEffect(() => {
+	const loadData = () => {
 		const tabHeights = tabRefs.current.map((ref) => ref.clientHeight);
 		const maxHeight = Math.max(...tabHeights);
 		setMaxHeight(maxHeight);
-	}, []);
+	};
+
+	console.log('childrenchildrenchildrenchildren', children.length);
 
 	return (
 		<div className='tab_wrap'>
@@ -39,17 +41,25 @@ const Tabs = ({ tabTitles, children }) => {
 				className='tab_panels'
 				style={{ height: maxHeight + 'px' }}
 			>
-				{children.map((tab, index) => {
-					return (
+				{children.length > 1 &&
+					children.map((tab, index) => (
 						<div
 							key={`tabPanel${index}`}
 							ref={(ref) => (tabRefs.current[index] = ref)}
 							className={`tab_panel ${selectedTab === index ? 'active' : ''}`}
+							onLoad={loadData}
 						>
 							{tab}
 						</div>
-					);
-				})}
+					))}
+				{children.length === undefined && (
+					<div
+						ref={(ref) => (tabRefs.current[0] = ref)}
+						className='tab_panel active'
+					>
+						{children}
+					</div>
+				)}
 			</div>
 		</div>
 	);
