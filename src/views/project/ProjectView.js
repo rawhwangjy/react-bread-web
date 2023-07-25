@@ -149,44 +149,51 @@ const ProjectView = () => {
 								</tr>
 								<tr>
 									<td colSpan='10'>
-										<Tabs tabTitles={tabTitles}>
-											{projectDetail.fileListMobile && (
-												<Tab>
-													<Swiper options={swiper}>
-														{JSON.parse(projectDetail.fileListMobile).map(
-															(image, index) => (
-																<SwiperSlide key={`mobile${index}`}>
-																	<span className='img_area mobile'>
-																		<img
-																			src={`${API_URL}/views/upload/${image.filename}`}
-																			alt={image.originalname}
-																		/>
-																	</span>
-																</SwiperSlide>
-															)
-														)}
-													</Swiper>
-												</Tab>
+										{(projectDetail.fileListMobile ||
+											projectDetail.fileListPc) && (
+											<Tabs tabTitles={tabTitles}>
+												{projectDetail.fileListMobile && (
+													<Tab>
+														<Swiper options={swiper}>
+															{JSON.parse(projectDetail.fileListMobile).map(
+																(image, index) => (
+																	<SwiperSlide key={`mobile${index}`}>
+																		<span className='img_area mobile'>
+																			<img
+																				src={`${API_URL}/views/upload/${image.filename}`}
+																				alt={image.originalname}
+																			/>
+																		</span>
+																	</SwiperSlide>
+																)
+															)}
+														</Swiper>
+													</Tab>
+												)}
+												{projectDetail.fileListPc && (
+													<Tab>
+														<Swiper options={swiper}>
+															{JSON.parse(projectDetail.fileListPc).map(
+																(image, index) => (
+																	<SwiperSlide key={`pc${index}`}>
+																		<span className='img_area pc'>
+																			<img
+																				src={`${API_URL}/views/upload/${image.filename}`}
+																				alt={image.originalname}
+																			/>
+																		</span>
+																	</SwiperSlide>
+																)
+															)}
+														</Swiper>
+													</Tab>
+												)}
+											</Tabs>
+										)}
+										{!projectDetail.fileListMobile &&
+											!projectDetail.fileListPc && (
+												<p className='no_data'>첨부 파일이 없습니다.</p>
 											)}
-											{projectDetail.fileListPc && (
-												<Tab>
-													<Swiper options={swiper}>
-														{JSON.parse(projectDetail.fileListPc).map(
-															(image, index) => (
-																<SwiperSlide key={`pc${index}`}>
-																	<span className='img_area pc'>
-																		<img
-																			src={`${API_URL}/views/upload/${image.filename}`}
-																			alt={image.originalname}
-																		/>
-																	</span>
-																</SwiperSlide>
-															)
-														)}
-													</Swiper>
-												</Tab>
-											)}
-										</Tabs>
 									</td>
 								</tr>
 							</tbody>
@@ -196,20 +203,13 @@ const ProjectView = () => {
 			</div>
 
 			<div className='footer_area side'>
-				{/* <button
-					type='button'
-					className='btn lg secondary'
-					onClick={backWindow}
-				>
-					<span>목록</span>
-				</button>
 				<Link
-					to='/board/create'
+					to='/project'
 					type='button'
 					className='btn lg primary'
 				>
-					글쓰기
-				</Link> */}
+					목록
+				</Link>
 			</div>
 		</div>
 	);
