@@ -85,7 +85,7 @@ const CategoryList = () => {
 	return (
 		<div className='page_container'>
 			<div className='title_area'>
-				<h3 className='main_title'>게시판 목록</h3>
+				<h3 className='main_title'>게시판 카테고리 목록</h3>
 			</div>
 			<div className='content_area'>
 				<div className='data_table_area'>

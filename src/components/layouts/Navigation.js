@@ -1,6 +1,6 @@
+import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { LocalKey, MobileMaxWidth } from 'utils/common.constants';
 
@@ -10,7 +10,10 @@ import logoDark from 'assets/images/visuals/logo_dark.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { fetchCategoryData } from 'actions/category.action';
+
 const Navigation = ({ onChange }) => {
+	const dispatch = useDispatch();
 	const [showSub, setShowSub] = useState(false);
 
 	const categoryList = useSelector((state) => state.categoryStore.categoryList);
@@ -18,6 +21,12 @@ const Navigation = ({ onChange }) => {
 	const firstBoard = useMemo(() => {
 		return categoryList[0]?.category;
 	}, [categoryList]);
+
+	useEffect(() => {
+		if (categoryList.length === 0) {
+			dispatch(fetchCategoryData());
+		}
+	}, [categoryList, dispatch]);
 
 	const [currentMode, setCurrentMode] = useState(false);
 	const changeCurrentMode = (nextState) => {

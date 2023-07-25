@@ -124,7 +124,7 @@ const ProjectList = () => {
 	return (
 		<div className='page_container'>
 			<div className='title_area'>
-				<h3 className='main_title'>{category}</h3>
+				<h3 className='sr_only'>참여 프로젝트 목록</h3>
 			</div>
 			<div className='content_area'>
 				<div className='project_area'>

@@ -4,10 +4,12 @@ import photo_bg from 'assets/images/visuals/mypage_bg.jpg';
 const Mypage = () => {
 	return (
 		<div className='page_container mypage'>
+			<h3 className='sr_only'>자기 소개</h3>
 			<div className='content_area'>
 				<div className='top_area'>
 					<div className='intro'>
 						<div className='title'>
+							<h4 className='sr_only'>인적 사항</h4>
 							<strong className='title1'>
 								<span>
 									<span>프</span>
@@ -29,9 +31,13 @@ const Mypage = () => {
 									<span>영</span>
 								</span>
 							</strong>
-							<strong className='title3'>Lv.32 일할 때만 완벽주의자</strong>
+							<strong className='title3'>
+								<span>Lv.32 </span>
+								<span>일할 때만 완벽주의자</span>
+							</strong>
 						</div>
 						<div className='career'>
+							<h4 className='sr_only'>경력 사항</h4>
 							<p className='company1'>
 								<span>(주)오픈오브젝트</span>
 								<span>2019.06 ~ 2023.04</span>
@@ -57,7 +63,7 @@ const Mypage = () => {
 				</div>
 				<hr />
 				<div className='bottom_area'>
-					<strong className='contact'>개발 && 계발 사이트</strong>
+					<h4 className='contact'>개발 && 계발 사이트</h4>
 					<div className='site'>
 						<strong className='site_title'>블로그</strong>
 						<a

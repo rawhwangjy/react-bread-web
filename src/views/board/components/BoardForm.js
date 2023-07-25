@@ -23,11 +23,6 @@ const BoardForm = ({
 		boardData ? true : false
 	);
 
-	// const filelist = useMemo(() => {
-	// 	if (boardData && boardData.fileList) {
-	// 		return JSON.parse(boardData.fileList);
-	// 	}
-	// }, [boardData]);
 	const filelist = useFilelistToObject(boardData);
 
 	// Select
