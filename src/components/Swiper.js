@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useReducer } from 'react';
+import { useEffect, useRef, useReducer } from 'react';
 
 import useRandomIdMaker from 'hooks/useRandomIdMaker';
 
@@ -42,8 +42,7 @@ const Swiper = ({ options, children }) => {
 	const { swiperTitles, pagination, navigation } = options;
 
 	// Slide Sizing
-	const [maxHeight, setMaxHeight] = useState(null);
-	// const [swiperWidth, setSwiperWidth] = useState(null);
+	// const [maxHeight, setMaxHeight] = useState(null);
 	const swiperRefs = useRef([]);
 	const swiperSlideRef = useRef(null);
 
@@ -58,9 +57,9 @@ const Swiper = ({ options, children }) => {
 	// const [selectedSlide, setSelectedSlide] = useState(state.currentSlide);
 
 	useEffect(() => {
-		const swiperHeights = swiperRefs.current.map((ref) => ref.clientHeight);
-		const maxHeight = Math.max(...swiperHeights);
-		setMaxHeight(maxHeight);
+		// const swiperHeights = swiperRefs.current.map((ref) => ref.clientHeight);
+		// const maxHeight = Math.max(...swiperHeights);
+		// setMaxHeight(maxHeight);
 
 		dispatchFn({
 			type: 'SET_SWIPER_WIDTH',
@@ -124,7 +123,6 @@ const Swiper = ({ options, children }) => {
 				<div
 					className='swiper_panels'
 					style={{
-						// height: maxHeight + 'px',
 						transform: `translate3d(${state.currentPosition}px, 0, 0)`,
 					}}
 				>

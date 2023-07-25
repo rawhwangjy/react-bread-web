@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { LocalKey, MobileMaxWidth } from 'utils/common.constants';
+import { MobileMaxWidth } from 'utils/common.constants';
 
 import ThemeToggle from 'components/ThemeToggle';
 import logo from 'assets/images/visuals/logo.png';

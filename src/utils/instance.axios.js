@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_URL } from 'utils/common.constants';
 
 const createInstance = () => {
-	// console.log('CREATE AXIOS INSTANCE 스타트', API_URL);
+	console.log('CREATE AXIOS INSTANCE 스타트', API_URL);
 	const instance = axios.create({
 		timeout: 5000,
 		baseURL: API_URL,

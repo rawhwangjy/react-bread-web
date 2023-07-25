@@ -1,6 +1,4 @@
-import { useCallback, useEffect, useReducer } from 'react';
-
-import { LocalKey } from 'utils/common.constants';
+import { useCallback, useReducer } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { cloneDeep } from 'lodash';
@@ -16,7 +16,6 @@ import {
 } from 'actions/project.action';
 
 const ProjectList = () => {
-	const { category } = useParams();
 	const dispatch = useDispatch();
 
 	// contant

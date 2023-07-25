@@ -1,7 +1,7 @@
 import Navigation from 'components/layouts/Navigation';
 import { useEffect, useState } from 'react';
 
-import { LocalKey, MobileMaxWidth } from 'utils/common.constants';
+import { MobileMaxWidth } from 'utils/common.constants';
 
 const Header = () => {
 	const [isShowModal, setIsShowModal] = useState(false);
