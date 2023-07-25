@@ -50,6 +50,7 @@ const Navigation = ({ onChange }) => {
 			{window.innerWidth > MobileMaxWidth && (
 				<>
 					<nav className='gnb_wrap'>
+						<h2 className='sr_only'>사이트 네비게이션</h2>
 						<ul>
 							<li>
 								<NavLink
@@ -144,7 +145,7 @@ const Navigation = ({ onChange }) => {
 							className='modal_area'
 							aria-expanded={isShowModal}
 						>
-							<strong className='sr-only'>전체메뉴</strong>
+							<h2 className='sr_only'>사이트 네비게이션</h2>
 							<nav className='gnb_wrap'>
 								<ul>
 									<li>
