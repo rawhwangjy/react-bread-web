@@ -81,7 +81,12 @@ const Spec = () => {
 									</li>
 									<li>
 										<em>프론트엔드</em>
-										<span>Vue3, Typescript, SCSS</span>
+										<span>
+											React ^18.2.0, <br />
+											React-DOM ^18.2.0, <br />
+											React-Redux ^8.1.1, <br />
+											SCSS
+										</span>
 									</li>
 									<li>
 										<em>형상관리</em>
