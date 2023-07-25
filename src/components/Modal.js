@@ -21,7 +21,7 @@ const Modal = ({ currentState, children, onClose }) => {
 				aria-modal='true'
 			>
 				<div className='modal_content'>
-					<div class='modal'>{children}</div>
+					<div className='modal'>{children}</div>
 					<button
 						className='btn_close'
 						onClick={onCloseModal}

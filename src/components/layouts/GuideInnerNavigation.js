@@ -44,7 +44,7 @@ const GuideInnerNavigation = () => {
 			<div className='guide_nav_wrap'>
 				{window.innerWidth <= MobileMaxWidth && (
 					<button
-						class='btn_mo_guide_open'
+						className='btn_mo_guide_open'
 						onClick={openGuideGnb}
 						aria-haspopup='true'
 					>
