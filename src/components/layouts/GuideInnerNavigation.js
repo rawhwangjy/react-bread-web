@@ -12,6 +12,7 @@ const GuideInnerNavigation = () => {
 		'checkbox',
 		'input',
 		'modal',
+		'preview',
 		'radio',
 		'select',
 		'swiper',

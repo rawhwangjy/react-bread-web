@@ -2,38 +2,47 @@ import { useLocation } from 'react-router-dom';
 
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBoardData } from 'actions/board.action';
 
 import Code from 'views/guide/Code';
 import Preview from 'components/Preview';
 
 import useFilelistToObject from 'hooks/useFilelistToObject';
 
+import { fetchBoardData } from 'actions/board.action';
+
 const LibToggle = () => {
 	const params = useLocation();
 
 	const jsCode = `
-import Toggle from 'components/Toggle';
+import Preview from 'components/Preview';
 
-const changeToggle = (nextState) => {
-	console.log('토글 상태', nextState);
-};
+const dispatch = useDispatch();
+const boardView = useSelector((state) => state.boardStore.boardView);
+
+// Filelist
+const filelist = useFilelistToObject(boardView);
+
+const reqData = useMemo(() => {
+	return { id: 26 };
+}, []);
+
+useEffect(() => {
+	dispatch(fetchBoardData(reqData));
+}, [dispatch, reqData]);
 
 return (
-	<Toggle onChange={changeToggle} />
+	{filelist && <Preview previewData={filelist} />}
 );
 	`;
 
-	const boardView = useSelector((state) => state.boardStore.boardView);
 	const dispatch = useDispatch();
+	const boardView = useSelector((state) => state.boardStore.boardView);
 
 	// Filelist
 	const filelist = useFilelistToObject(boardView);
-	console.log('boardView,', boardView);
-	console.log('filelist,', filelist);
 
 	const reqData = useMemo(() => {
-		return { id: 26 };
+		return { id: 2 };
 	}, []);
 
 	useEffect(() => {
