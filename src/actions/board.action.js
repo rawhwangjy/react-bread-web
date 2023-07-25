@@ -32,7 +32,7 @@ export const fetchBoardData = (reqData) => {
 		dispatch(boardActions.isLoading({ isLoading: true }));
 		dispatch(
 			boardActions.getBoard({
-				boardView: [],
+				boardView: {},
 			})
 		);
 		const response = await httpGetBoard(reqData);
