@@ -10,7 +10,7 @@ const CookiePopup = ({ onChange }) => {
 
 	const closePopup = () => {
 		if (cookieState) {
-			var date = new Date();
+			const date = new Date();
 			date.setMinutes(date.getMinutes() + 60);
 			document.cookie = `expires=true; expires=${date.toUTCString()}`;
 		}
