@@ -12,7 +12,6 @@ const GuideInnerNavigation = () => {
 		'checkbox',
 		'input',
 		'modal',
-		'preview',
 		'radio',
 		'select',
 		'swiper',
@@ -59,6 +58,7 @@ const GuideInnerNavigation = () => {
 							}`}
 							aria-expanded={isShowModal}
 						>
+							<h3 className='sr_only'>사이트 가이드 서브 네비게이션</h3>
 							<ul>
 								<li>
 									<NavLink

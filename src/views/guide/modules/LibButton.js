@@ -88,11 +88,11 @@ const LibModule = () => {
 
 	return (
 		<>
-			<h3 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h3>
+			<h4 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h4>
 			<div className='guide_content'>
 				<div className='box'>
 					<div className='api_box'>
-						<h3>공통 API</h3>
+						<h5>공통 API</h5>
 						<table className='api_table'>
 							<colgroup>
 								<col className='width20' />

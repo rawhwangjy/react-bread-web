@@ -7,6 +7,8 @@ import { fetchBoardData } from 'actions/board.action';
 import Code from 'views/guide/Code';
 import Preview from 'components/Preview';
 
+import useFilelistToObject from 'hooks/useFilelistToObject';
+
 const LibToggle = () => {
 	const params = useLocation();
 
@@ -26,12 +28,12 @@ return (
 	const dispatch = useDispatch();
 
 	// Filelist
-	let filelist;
-	if (boardView.fileList) {
-		filelist = JSON.parse(boardView.fileList);
-	}
+	const filelist = useFilelistToObject(boardView);
+	console.log('boardView,', boardView);
+	console.log('filelist,', filelist);
+
 	const reqData = useMemo(() => {
-		return { id: 21 };
+		return { id: 26 };
 	}, []);
 
 	useEffect(() => {
@@ -40,11 +42,11 @@ return (
 
 	return (
 		<>
-			<h3 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h3>
+			<h4 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h4>
 			<div className='guide_content'>
 				<div className='box'>
 					<div className='api_box'>
-						<h3>공통 API</h3>
+						<h5>공통 API</h5>
 						<table className='api_table'>
 							<colgroup>
 								<col className='width20' />
@@ -75,9 +77,9 @@ return (
 						</table>
 					</div>
 					<div className='lib_box'>
-						<h3>Basic</h3>
+						<h6>Basic</h6>
 						<div className='example'>
-							<Preview previewData={filelist} />
+							{filelist && <Preview previewData={filelist} />}
 						</div>
 						<Code
 							language='javascript'

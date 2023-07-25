@@ -5,17 +5,17 @@ const Spec = () => {
 
 	return (
 		<>
-			<h3 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h3>
+			<h4 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h4>
 			<div className='guide_content spec'>
 				<div className='box'>
 					<div className='static_list'>
 						<ul>
 							<li>
-								<h3 className='sub_title'>타겟 디바이스</h3>
+								<h5 className='sub_title'>타겟 디바이스</h5>
 								<span>Mobile, Tablet, PC</span>
 							</li>
 							<li>
-								<h3 className='sub_title'>최적화 해상도</h3>
+								<h5 className='sub_title'>최적화 해상도</h5>
 								<ul className='dot_list'>
 									<li>
 										<em>Mobile</em>
@@ -32,7 +32,7 @@ const Spec = () => {
 								</ul>
 							</li>
 							<li>
-								<h3 className='sub_title'>분기 처리 정보</h3>
+								<h5 className='sub_title'>분기 처리 정보</h5>
 								<ul className='dot_list'>
 									<li>
 										<strong>미디어쿼리를 이용하여 분기 처리</strong>
@@ -65,7 +65,7 @@ const Spec = () => {
 								</ul>
 							</li>
 							<li>
-								<h3 className='sub_title'>환경 및 사용 기술</h3>
+								<h5 className='sub_title'>환경 및 사용 기술</h5>
 								<ul className='dot_list'>
 									<li>
 										<em>개발 환경</em>

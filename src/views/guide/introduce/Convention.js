@@ -5,11 +5,11 @@ const Convention = () => {
 
 	return (
 		<>
-			<h3 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h3>
+			<h4 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h4>
 			<div className='guide_content convention'>
 				<div className='box'>
 					<div className='table_box'>
-						<h3 className='sub_title'>속성의 선언 순서</h3>
+						<h5 className='sub_title'>속성의 선언 순서</h5>
 						<table className='table'>
 							<colgroup>
 								<col style={{ width: '20%' }} />

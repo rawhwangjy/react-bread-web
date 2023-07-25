@@ -7,10 +7,10 @@ const Accessibility = () => {
 
 	return (
 		<>
-			<h3 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h3>
+			<h4 className='guide_title'>{params.pathname.replace(/^.*\//, '')}</h4>
 			<div className='guide_content accessibility'>
 				<div className='box'>
-					<h3 className='sub_title'>
+					<h5 className='sub_title'>
 						Chrome 확장 프로그램 OpenWAX 사용
 						<a
 							href='https://chrome.google.com/webstore/detail/openwax/bfahpbmaknaeohgdklfbobogpdngngoe?hl=ko'
@@ -19,7 +19,7 @@ const Accessibility = () => {
 						>
 							다운로드
 						</a>
-					</h3>
+					</h5>
 					<span className='img_wrap'>
 						<img
 							src={imgSrc}
