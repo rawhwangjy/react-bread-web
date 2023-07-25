@@ -182,14 +182,15 @@
 			width: 30rem;
 		}
 	}
-	.page_container {
-		overflow: hidden;
-	}
 	main {
+		.page_container {
+			overflow: hidden;
+			padding: 0 2rem;
+		}
 		.page_body {
 			overflow-y: auto;
 			width: 100%;
-			padding: 8.5rem 2rem 5rem;
+			padding: 8.5rem 0 5rem;
 			.title-area {
 				padding-bottom: 2rem;
 			}
