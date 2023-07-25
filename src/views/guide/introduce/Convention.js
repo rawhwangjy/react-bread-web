@@ -25,7 +25,7 @@ const Convention = () => {
 							</thead>
 							<tbody>
 								<tr>
-									<td rowspan='3'>1. 위치</td>
+									<td rowSpan='3'>1. 위치</td>
 									<td>position</td>
 									<td>absolute, fixed, relative, static</td>
 								</tr>
@@ -38,7 +38,7 @@ const Convention = () => {
 									<td>number</td>
 								</tr>
 								<tr>
-									<td rowspan='2'>2. 넘침/흐름</td>
+									<td rowSpan='2'>2. 넘침/흐름</td>
 									<td>overflow</td>
 									<td>visible, hidden, scroll, auto</td>
 								</tr>
@@ -47,7 +47,7 @@ const Convention = () => {
 									<td>left, right, none</td>
 								</tr>
 								<tr>
-									<td rowspan='2'>3. 표시</td>
+									<td rowSpan='2'>3. 표시</td>
 									<td>display</td>
 									<td>
 										none, block, inline, inline-block, inline-table, list-item,
@@ -61,7 +61,7 @@ const Convention = () => {
 									<td>visible, hidden, collapse</td>
 								</tr>
 								<tr>
-									<td rowspan='4'>4. 크기/간격</td>
+									<td rowSpan='4'>4. 크기/간격</td>
 									<td>width, max-width, min-width</td>
 									<td>auto, length(px, em, rem), %</td>
 								</tr>
@@ -78,7 +78,7 @@ const Convention = () => {
 									<td>auto, length(px, em, rem), %</td>
 								</tr>
 								<tr>
-									<td rowspan='3'>5. 박스모양</td>
+									<td rowSpan='3'>5. 박스모양</td>
 									<td>border</td>
 									<td>border-width, border-style, border-color</td>
 								</tr>
@@ -94,7 +94,7 @@ const Convention = () => {
 									</td>
 								</tr>
 								<tr>
-									<td rowspan='4'>6. 글꼴/정렬</td>
+									<td rowSpan='4'>6. 글꼴/정렬</td>
 									<td>color</td>
 									<td>hex_number</td>
 								</tr>
