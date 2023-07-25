@@ -90,7 +90,7 @@ const BoardCreate = () => {
 			<div className='footer_area side'>
 				<button
 					type='button'
-					className='btn lg secondary'
+					className='btn lg light'
 					onClick={backWindow}
 				>
 					<span>목록</span>

@@ -107,7 +107,7 @@ const BoardView = () => {
 				<Link
 					to={`/board/${category}`}
 					type='button'
-					className='btn lg primary'
+					className='btn lg light'
 				>
 					목록
 				</Link>

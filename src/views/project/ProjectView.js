@@ -206,7 +206,7 @@ const ProjectView = () => {
 				<Link
 					to='/project'
 					type='button'
-					className='btn lg primary'
+					className='btn lg light'
 				>
 					목록
 				</Link>
