@@ -144,11 +144,11 @@ const LibModule = () => {
 						</p>
 					</div>
 					<div className='lib_box'>
-						<h3>
+						<h6>
 							Size Class :
 							<em className='font_primary'>xs | sm | md | lg | xl</em>+ Style
 							Class :<em className='font_primary'>primary</em>
-						</h3>
+						</h6>
 						<div className='example'>
 							<ul className='flex_box'>
 								<li>
@@ -229,11 +229,11 @@ const LibModule = () => {
 						/>
 					</div>
 					<div className='lib_box'>
-						<h3>
+						<h6>
 							Size Class :
 							<em className='font_primary'>xs | sm | md | lg | xl</em>+ Style
 							Class :<em className='font_primary'>secondary</em>
-						</h3>
+						</h6>
 						<div className='example'>
 							<ul className='flex_box'>
 								<li>
@@ -314,11 +314,11 @@ const LibModule = () => {
 						/>
 					</div>
 					<div className='lib_box'>
-						<h3>
+						<h6>
 							Size Class :
 							<em className='font_primary'>xs | sm | md | lg | xl</em>+ Style
 							Class :<em className='font_primary'>dark</em>
-						</h3>
+						</h6>
 						<div className='example'>
 							<ul className='flex_box'>
 								<li>
@@ -399,11 +399,11 @@ const LibModule = () => {
 						/>
 					</div>
 					<div className='lib_box'>
-						<h3>
+						<h6>
 							Size Class :
 							<em className='font_primary'>xs | sm | md | lg | xl</em>+ Style
 							Class :<em className='font_primary'>light</em>
-						</h3>
+						</h6>
 						<div className='example'>
 							<ul className='flex_box'>
 								<li>
@@ -484,12 +484,12 @@ const LibModule = () => {
 						/>
 					</div>
 					<div className='lib_box'>
-						<h3>
+						<h6>
 							Size Class :
 							<em className='font_primary'>xs | sm | md | lg | xl</em>+ Style
 							Class :<em className='font_primary'>primary</em>+ Border Radius
 							Class :<em className='font_primary'>border</em>
-						</h3>
+						</h6>
 						<div className='example'>
 							<ul className='flex_box'>
 								<li>
