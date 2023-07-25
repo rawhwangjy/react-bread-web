@@ -550,8 +550,9 @@
 		width: 2.4rem;
 		height: 2.4rem;
 		font-size: 1.8rem;
+		color: var(--primary);
 		&:disabled {
-			color: #999;
+			color: var(--subTxt);
 			pointer-events: none;
 		}
 	}
@@ -564,6 +565,7 @@
 				width: 2.4rem;
 				height: 2.4rem;
 				font-size: 1.4rem;
+				color: var(--mainTxt);
 				&.active {
 					border-radius: 50%;
 					background-color: common.$primary;
