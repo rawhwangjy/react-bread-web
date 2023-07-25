@@ -367,6 +367,37 @@ main {
 						}
 					}
 				}
+				.swiper_wrap {
+					.swiper_panel {
+						padding: 3rem 4rem;
+					}
+					.img_area {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						img {
+							border: 0.1rem solid common.$grayC;
+						}
+						&.pc {
+							width: 30rem;
+							height: 100%;
+							margin: 0 auto;
+							img {
+								width: 100%;
+								height: auto;
+							}
+						}
+						&.mobile {
+							width: 100%;
+							height: 30rem;
+							margin: 0 auto;
+							img {
+								width: auto;
+								height: 100%;
+							}
+						}
+					}
+				}
 			}
 		}
 		.footer_area {

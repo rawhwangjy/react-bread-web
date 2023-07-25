@@ -2,10 +2,15 @@ import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useMemo, useState } from 'react';
 
+import { LocalKey, MobileMaxWidth } from 'utils/common.constants';
+
 import ThemeToggle from 'components/ThemeToggle';
 import logo from 'assets/images/visuals/logo.png';
+import logoDark from 'assets/images/visuals/logo_dark.png';
 
-const Navigation = () => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const Navigation = ({ onChange }) => {
 	const [showSub, setShowSub] = useState(false);
 
 	const categoryList = useSelector((state) => state.categoryStore.categoryList);
@@ -14,75 +19,194 @@ const Navigation = () => {
 		return categoryList[0]?.category;
 	}, [categoryList]);
 
+	const [currentMode, setCurrentMode] = useState(false);
+	const changeCurrentMode = (nextState) => {
+		setCurrentMode(nextState);
+	};
+
+	// mobile
+	const [isShowModal, subIsShowModal] = useState(false);
+
+	const onClickIsShowAllMenu = () => {
+		subIsShowModal((prevState) => !prevState);
+		onChange(true);
+	};
+
+	const closeGnb = () => {
+		subIsShowModal((prevState) => !prevState);
+		onChange(false);
+	};
+
 	return (
 		<>
 			<h1>
 				<Link to='/'>
 					<img
-						src={logo}
+						src={currentMode ? logoDark : logo}
 						alt='메인 바로가기'
 					/>
 				</Link>
 			</h1>
-			<nav className='gnb_wrap'>
-				<ul>
-					<li>
-						<NavLink
-							to='/guide/introduce/spec'
-							activeclassname='active'
+			{window.innerWidth > MobileMaxWidth && (
+				<>
+					<nav className='gnb_wrap'>
+						<ul>
+							<li>
+								<NavLink
+									to='/guide/introduce/spec'
+									activeclassname='active'
+								>
+									소스 코드
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
+									to='/project'
+									activeclassname='active'
+								>
+									프로젝트
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
+									to='/category'
+									activeclassname='active'
+								>
+									카테고리
+								</NavLink>
+							</li>
+							<li
+								onMouseEnter={() => setShowSub(true)}
+								onMouseLeave={() => setShowSub(false)}
+							>
+								<NavLink
+									to={`/board/${firstBoard}`}
+									activeclassname='active'
+								>
+									게시판
+								</NavLink>
+								{showSub && categoryList.length > 0 && (
+									<ul className='sub_gnb_wrap'>
+										{categoryList.map((item) => {
+											return (
+												<li key={`sub${item.id}`}>
+													<Link
+														to={`/board/${item.category}`}
+														activeclassname='active'
+													>
+														{item.category}
+													</Link>
+												</li>
+											);
+										})}
+									</ul>
+								)}
+							</li>
+						</ul>
+					</nav>
+					<ThemeToggle
+						leftItem='라이트 모드'
+						rightItem='다크모드'
+						onChange={changeCurrentMode}
+					/>
+				</>
+			)}
+			{window.innerWidth <= MobileMaxWidth && (
+				<>
+					<ThemeToggle
+						leftItem='라이트 모드'
+						rightItem='다크모드'
+						onChange={changeCurrentMode}
+					/>
+					<div className='btn_more_area'>
+						<button
+							type='button'
+							className={`btn_more_open ${isShowModal ? 'active' : ''}`}
+							onClick={onClickIsShowAllMenu}
 						>
-							소스 코드
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							to='/project'
-							activeclassname='active'
-						>
-							프로젝트
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							to='/category'
-							activeclassname='active'
-						>
-							카테고리
-						</NavLink>
-					</li>
-					<li
-						onMouseEnter={() => setShowSub(true)}
-						onMouseLeave={() => setShowSub(false)}
-					>
-						<NavLink
-							to={`/board/${firstBoard}`}
-							activeclassname='active'
-						>
-							게시판
-						</NavLink>
-						{showSub && categoryList.length > 0 && (
-							<ul className='sub_gnb_wrap'>
-								{categoryList.map((item) => {
-									return (
-										<li key={`sub${item.id}`}>
-											<Link
-												to={`/board/${item.category}`}
-												activeclassname='active'
-											>
-												{item.category}
-											</Link>
-										</li>
-									);
-								})}
-							</ul>
-						)}
-					</li>
-				</ul>
-			</nav>
-			<ThemeToggle
-				leftItem='라이트 모드'
-				rightItem='다크모드'
-			/>
+							<FontAwesomeIcon
+								icon='fa-solid fa-bars'
+								aria-label={`전체 메뉴 ${isShowModal ? '열기' : '닫기'}`}
+							/>
+						</button>
+					</div>
+					{isShowModal && (
+						<div className='modal_area'>
+							<strong className='sr-only'>전체메뉴</strong>
+							<nav className='gnb_wrap'>
+								<ul>
+									<li>
+										<NavLink
+											to='/guide/introduce/spec'
+											activeclassname='active'
+											onClick={closeGnb}
+										>
+											소스 코드
+										</NavLink>
+									</li>
+									<li>
+										<NavLink
+											to='/project'
+											activeclassname='active'
+											onClick={closeGnb}
+										>
+											프로젝트
+										</NavLink>
+									</li>
+									<li>
+										<NavLink
+											to='/category'
+											activeclassname='active'
+											onClick={closeGnb}
+										>
+											카테고리
+										</NavLink>
+									</li>
+									<li>
+										<NavLink
+											to={`/board/${firstBoard}`}
+											activeclassname='active'
+											onClick={closeGnb}
+										>
+											게시판
+										</NavLink>
+										{categoryList.length > 0 && (
+											<ul className='sub_gnb_wrap'>
+												{categoryList.map((item) => {
+													return (
+														<li key={`sub${item.id}`}>
+															<Link
+																to={`/board/${item.category}`}
+																activeclassname='active'
+																onClick={closeGnb}
+															>
+																{item.category}
+															</Link>
+														</li>
+													);
+												})}
+											</ul>
+										)}
+									</li>
+								</ul>
+							</nav>
+							<button
+								className='btn_mo_close'
+								onClick={closeGnb}
+							>
+								<FontAwesomeIcon
+									icon='fa-solid fa-xmark'
+									aria-label='메뉴 닫기'
+								/>
+							</button>
+							<div
+								className='dim'
+								onClick={closeGnb}
+							/>
+						</div>
+					)}
+				</>
+			)}
 		</>
 	);
 };

@@ -4,7 +4,7 @@ import useRandomIdMaker from 'hooks/useRandomIdMaker';
 
 import { LocalKey } from 'utils/common.constants';
 
-const ThemeToggle = (props) => {
+const ThemeToggle = ({ leftItem, rightItem, onChange }) => {
 	const randomString = useRandomIdMaker();
 
 	const currentType = useMemo(() => {
@@ -29,12 +29,14 @@ const ThemeToggle = (props) => {
 			);
 			setCurrentClass(currentType ? 'dark' : 'light');
 			setDefaultChecked(currentType);
+			onChange(currentType);
 		} else {
 			document.documentElement.setAttribute('color-mode', currentLocalType);
 			setCurrentClass(currentLocalType);
 			setDefaultChecked(currentLocalType === 'dark' ? true : false);
+			onChange(currentLocalType === 'dark' ? true : false);
 		}
-	}, [currentType, currentLocalType]);
+	}, [currentType, currentLocalType, onChange]);
 
 	useEffect(() => {
 		checkFirst();
@@ -44,6 +46,7 @@ const ThemeToggle = (props) => {
 		localStorage.setItem(LocalKey.themeMode, mode);
 		setCurrentClass(mode);
 		document.documentElement.setAttribute('color-mode', mode);
+		onChange(mode === 'dark' ? true : false);
 	};
 
 	return (
@@ -57,7 +60,7 @@ const ThemeToggle = (props) => {
 					onChange={() => onToggle('light')}
 				/>
 				<label htmlFor={`leftItem${randomString}`}>
-					<span>{props.leftItem}</span>
+					<span>{leftItem}</span>
 				</label>
 			</div>
 			<div className='toggle_item'>
@@ -69,7 +72,7 @@ const ThemeToggle = (props) => {
 					onChange={() => onToggle('dark')}
 				/>
 				<label htmlFor={`rightItem${randomString}`}>
-					<span>{props.rightItem}</span>
+					<span>{rightItem}</span>
 				</label>
 			</div>
 		</div>

@@ -16,4 +16,7 @@ export const LocalKey = {
 	accessToken: 'accessToken',
 	refreshToken: 'refreshToken',
 	themeMode: 'themeMode',
+	coachGuide: 'coachGuide',
 };
+
+export const MobileMaxWidth = 768;
