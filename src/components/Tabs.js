@@ -1,5 +1,7 @@
 import { useState, useRef, useReducer, useEffect } from 'react';
 
+import useRandomIdMaker from 'hooks/useRandomIdMaker';
+
 const reducerFn = (state, action) => {
 	switch (action.type) {
 		case 'SET_SWIPER_WIDTH':
@@ -22,6 +24,8 @@ const reducerFn = (state, action) => {
 };
 
 const Tabs = ({ tabTitles, children }) => {
+	const randomString = useRandomIdMaker();
+
 	const [maxHeight, setMaxHeight] = useState(null);
 	const tabRef = useRef(null);
 	const tabRefs = useRef([]);
@@ -62,12 +66,18 @@ const Tabs = ({ tabTitles, children }) => {
 			className='tab_wrap'
 			ref={tabRef}
 		>
-			<div className='tabs'>
+			<div
+				className='tabs'
+				role='tablist'
+			>
 				{tabTitles.map((title, index) => {
 					return (
 						<div
+							id={`tab${randomString}${index}`}
 							className={`tab ${state.selectedTab === index ? 'active' : ''}`}
 							key={`tab${index}`}
+							role='tab'
+							aria-selected={state.selectedTab === index}
 						>
 							<button
 								type='button'
@@ -95,6 +105,8 @@ const Tabs = ({ tabTitles, children }) => {
 							className={`tab_panel ${
 								state.selectedTab === index ? 'active' : ''
 							}`}
+							aria-labelledby={`tab${randomString}${index}`}
+							aria-hidden={state.selectedTab === index ? false : true}
 							onLoad={loadData}
 						>
 							{tab}
@@ -104,6 +116,8 @@ const Tabs = ({ tabTitles, children }) => {
 					<div
 						ref={(ref) => (tabRefs.current[0] = ref)}
 						className='tab_panel active'
+						role='tabpanel'
+						aria-labelledby={`tab${randomString}0`}
 					>
 						{children}
 					</div>

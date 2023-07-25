@@ -123,6 +123,7 @@ const Navigation = ({ onChange }) => {
 							type='button'
 							className={`btn_more_open ${isShowModal ? 'active' : ''}`}
 							onClick={onClickIsShowAllMenu}
+							aria-haspopup='true'
 						>
 							<FontAwesomeIcon
 								icon='fa-solid fa-bars'
@@ -131,7 +132,10 @@ const Navigation = ({ onChange }) => {
 						</button>
 					</div>
 					{isShowModal && (
-						<div className='modal_area'>
+						<div
+							className='modal_area'
+							aria-expanded={isShowModal}
+						>
 							<strong className='sr-only'>전체메뉴</strong>
 							<nav className='gnb_wrap'>
 								<ul>

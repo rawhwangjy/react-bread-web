@@ -46,6 +46,7 @@ const GuideInnerNavigation = () => {
 					<button
 						class='btn_mo_guide_open'
 						onClick={openGuideGnb}
+						aria-haspopup='true'
 					>
 						<span>가이드 메뉴 열기</span>
 					</button>
@@ -56,6 +57,7 @@ const GuideInnerNavigation = () => {
 							className={`guide_nav ${
 								window.innerWidth <= MobileMaxWidth ? 'mobile' : ''
 							}`}
+							aria-expanded={isShowModal}
 						>
 							<ul>
 								<li>

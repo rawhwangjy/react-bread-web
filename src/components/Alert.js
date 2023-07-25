@@ -16,6 +16,8 @@ const Alert = ({ currentState, type, title, message, onClose }) => {
 			<div
 				className='alert_wrap'
 				onClick={onCloseTargetAlert}
+				role={type === 'success' ? 'status' : 'alert'}
+				aria-live='polite'
 			>
 				<div className={`alert_content ${type}`}>
 					<div className='message_wrap'>

@@ -16,6 +16,9 @@ const Modal = ({ currentState, children, onClose }) => {
 			<div
 				className='modal_wrap'
 				onClick={onCloseTargetModal}
+				role='dialog'
+				aria-live='polite'
+				aria-modal='true'
 			>
 				<div className='modal_content'>
 					<div class='modal'>{children}</div>

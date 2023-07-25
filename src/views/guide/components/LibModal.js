@@ -24,6 +24,7 @@ return (
 	<Modal
 		currentState={currentState}
 		onClose={closeModal}
+		aria-haspopup='dialog'
 	>
 		<ModalHeader>Modal Title</ModalHeader>
 		<ModalContent>
@@ -131,6 +132,7 @@ return (
 								type='button'
 								className='btn sm primary'
 								onClick={openModal}
+								aria-haspopup='dialog'
 							>
 								<span>Modal 열기</span>
 							</button>

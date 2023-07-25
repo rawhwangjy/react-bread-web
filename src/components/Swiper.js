@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, useReducer } from 'react';
 
+import useRandomIdMaker from 'hooks/useRandomIdMaker';
+
 const reducerFn = (state, action) => {
 	switch (action.type) {
 		case 'SET_SWIPER_WIDTH':
@@ -36,6 +38,7 @@ const reducerFn = (state, action) => {
 };
 
 const Swiper = ({ options, children }) => {
+	const randomString = useRandomIdMaker();
 	const { swiperTitles, pagination, navigation } = options;
 
 	// Slide Sizing
@@ -91,14 +94,20 @@ const Swiper = ({ options, children }) => {
 			ref={swiperSlideRef}
 		>
 			{swiperTitles && (
-				<div className='swiper_tabs'>
+				<div
+					className='swiper_tabs'
+					role='tablist'
+				>
 					{swiperTitles.map((swiperTitle, index) => {
 						return (
 							<div
+								id={`tab${randomString}${index}`}
 								key={`swiperTitle${index}`}
 								className={`swiper_tab ${
 									state.currentSlide === index ? 'active' : ''
 								}`}
+								role='tab'
+								aria-selected={state.selectedTab === index}
 							>
 								<button
 									type='button'
@@ -127,6 +136,8 @@ const Swiper = ({ options, children }) => {
 								className={`swiper_panel ${
 									state.currentSlide === index ? 'active' : ''
 								}`}
+								aria-labelledby={`tab${randomString}${index}`}
+								aria-hidden={state.currentSlide === index ? false : true}
 							>
 								{swiper}
 							</div>
