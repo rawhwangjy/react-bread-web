@@ -1,7 +1,30 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRef } from 'react';
 
+import CookiePopup from 'views/popup/CookiePopup';
+
 const Main = () => {
+	const [cookieState, setCookieState] = useState(false);
+
+	const getCookieValue = (name) =>
+		document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
+
+	useEffect(() => {
+		var currentCookie = getCookieValue('expires');
+		if (Boolean(currentCookie)) {
+			setCookieState(false);
+			document.body.style.overflow = 'revert';
+		} else {
+			setCookieState(true);
+			document.body.style.overflow = 'hidden';
+		}
+	}, []);
+
+	const closeCookiePopup = useCallback((nextState) => {
+		setCookieState(false);
+		document.body.style.overflow = 'revert';
+	}, []);
+
 	const setLayout = (target) => {
 		target.scrollHeight = target.heightNum * window.innerHeight;
 		if (target.objs?.container) {
@@ -234,6 +257,7 @@ const Main = () => {
 
 	return (
 		<div className='page_container main_area'>
+			{cookieState && <CookiePopup onChange={closeCookiePopup} />}
 			<div className='content_area'>
 				<section
 					className='main_section'

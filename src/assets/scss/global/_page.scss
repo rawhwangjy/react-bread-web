@@ -1,6 +1,64 @@
 @use './assets/scss/modules/common';
 
 // main
+.cookie_popup {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	z-index: 30;
+	.cookie_content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 30;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 30rem;
+		height: 25rem;
+		border: 0.1rem solid var(--mainBorder);
+		background-color: var(--mainBg);
+		padding: 2rem;
+		color: var(--mainTxt);
+		transform: translate3d(-50%, -50%, 0);
+		.content {
+			p {
+				margin-bottom: 3rem;
+				font-size: common.$fs-m;
+			}
+			a {
+				max-width: 100%;
+			}
+		}
+		.cookie_btns {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			.btn {
+				margin-top: 1rem;
+			}
+		}
+	}
+	.dim {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-color: var(--mainBg);
+		opacity: 0.9;
+	}
+}
 #showScene0 {
 	.wrapper {
 		overflow-y: auto;
