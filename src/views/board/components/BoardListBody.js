@@ -54,7 +54,7 @@ const BoardListBody = ({ boardData, onChange }) => {
 			{boardData && boardData.length === 0 && (
 				<tbody>
 					<tr>
-						<td colSpan={2}>
+						<td colSpan='2'>
 							<p className='no_data'>게시글이 없습니다.</p>
 						</td>
 					</tr>

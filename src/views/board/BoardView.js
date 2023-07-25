@@ -60,45 +60,47 @@ const BoardView = () => {
 						<col style={{ width: '20%' }} />
 						<col style={{ width: '80%' }} />
 					</colgroup>
-					<tbody>
-						<tr>
-							<th scope='row'>제목</th>
-							<td>{boardView && boardView.title}</td>
-						</tr>
-						<tr>
-							<th scope='row'>내용</th>
-							<td>
-								<div
-									dangerouslySetInnerHTML={{
-										__html: boardView && boardView.content,
-									}}
-								/>
-							</td>
-						</tr>
-						<tr>
-							<th scope='row'>첨부파일</th>
-							<td>
-								<div className='preview_wrap'>
-									{filelist &&
-										filelist.map((image, index) => (
-											<div
-												key={index}
-												className='img_wrap'
-											>
-												<span className='img_area'>
-													<img
-														ref={(ref) => (imgRefs.current[index] = ref)}
-														src={`${API_URL}/views/upload/${image.filename}`}
-														alt={image.originalname}
-														onLoad={resizeImg}
-													/>
-												</span>
-											</div>
-										))}
-								</div>
-							</td>
-						</tr>
-					</tbody>
+					{boardView && (
+						<tbody>
+							<tr>
+								<th scope='row'>제목</th>
+								<td>{boardView.title}</td>
+							</tr>
+							<tr>
+								<th scope='row'>내용</th>
+								<td>
+									<div
+										dangerouslySetInnerHTML={{
+											__html: boardView.content,
+										}}
+									/>
+								</td>
+							</tr>
+							<tr>
+								<th scope='row'>첨부파일</th>
+								<td>
+									<div className='preview_wrap'>
+										{filelist &&
+											filelist.map((image, index) => (
+												<div
+													key={index}
+													className='img_wrap'
+												>
+													<span className='img_area'>
+														<img
+															ref={(ref) => (imgRefs.current[index] = ref)}
+															src={`${API_URL}/views/upload/${image.filename}`}
+															alt={image.originalname}
+															onLoad={resizeImg}
+														/>
+													</span>
+												</div>
+											))}
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					)}
 				</table>
 			</div>
 			<div className='footer_area side'>
