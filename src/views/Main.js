@@ -237,7 +237,7 @@ const Main = () => {
 			<div className='content_area'>
 				<section
 					className='main_section'
-					id='section0'
+					id='mainArea'
 					ref={mainSection}
 				>
 					<h2>안녕하세요.</h2>
@@ -268,7 +268,9 @@ const Main = () => {
 						<p>
 							매일 리팩토링 작업 중입니다.
 							<br />
-							M세대만큼 열정적이고 Z세대처럼 자유분방합니다.
+							M세대만큼 열정적이고 💪🏻
+							<br />
+							Z세대처럼 자유분방합니다.🗽
 						</p>
 					</div>
 					<div

@@ -10,7 +10,7 @@ export const fetchProjectListData = () => {
 	return async (dispatch) => {
 		dispatch(projectActions.isLoading({ isLoading: true }));
 		const response = await httpGetProjectListAll();
-		console.log('All data ===> ', response.data);
+		// console.log('All data ===> ', response.data);
 		try {
 			console.log('ok');
 			dispatch(
@@ -75,7 +75,7 @@ export const fetchProjectData = (reqData) => {
 			})
 		);
 		const response = await httpGetProject(reqData);
-		console.log('fetchProjectData data ===> ', response.data);
+		// console.log('fetchProjectData data ===> ', response.data);
 		try {
 			console.log('ok');
 			dispatch(
