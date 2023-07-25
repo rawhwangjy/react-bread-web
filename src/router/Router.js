@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Container from 'components/layouts/Container';
 
 import Main from 'views/Main';
+import Mypage from 'views/Mypage';
 import RoutesCategory from 'router/routes/RoutesCategory';
 import RoutesGuide from 'router/routes/RoutesGuide';
 import RoutesProject from 'router/routes/RoutesProject';
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
 		// errorElement: <Error />,
 		children: [
 			{ index: true, element: <Main /> },
+			{ path: 'me', element: <Mypage /> },
 			RoutesCategory,
 			RoutesGuide,
 			RoutesProject,

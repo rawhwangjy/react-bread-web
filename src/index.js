@@ -7,9 +7,25 @@ import reportWebVitals from './reportWebVitals';
 import 'assets/scss/global/global.scss';
 import store from 'store/index';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPencil, faTrash, faCheck } from '@fortawesome/free-solid-svg-icons';
+import {
+	faPencil,
+	faTrash,
+	faCheck,
+	faCaretLeft,
+	faCaretRight,
+	faBars,
+	faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPencil, faTrash, faCheck);
+library.add(
+	faPencil,
+	faTrash,
+	faCheck,
+	faCaretLeft,
+	faCaretRight,
+	faBars,
+	faXmark
+);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>

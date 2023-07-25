@@ -53,6 +53,14 @@ const Navigation = ({ onChange }) => {
 						<ul>
 							<li>
 								<NavLink
+									to='/me'
+									activeclassname='active'
+								>
+									자기 소개
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
 									to='/guide/introduce/spec'
 									activeclassname='active'
 								>
@@ -140,6 +148,14 @@ const Navigation = ({ onChange }) => {
 							<nav className='gnb_wrap'>
 								<ul>
 									<li>
+										<li>
+											<NavLink
+												to='/me'
+												activeclassname='active'
+											>
+												자기 소개
+											</NavLink>
+										</li>
 										<NavLink
 											to='/guide/introduce/spec'
 											activeclassname='active'

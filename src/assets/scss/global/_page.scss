@@ -102,6 +102,125 @@
 	}
 }
 
+// 자기 소개
+.mypage {
+	.content_area {
+		width: 100rem;
+		margin: 0 auto;
+		padding: 10rem 0 5rem;
+		.top_area {
+			display: flex;
+			justify-content: center;
+		}
+		.intro {
+			display: flex;
+			flex-direction: column;
+			.title {
+				padding-top: 1rem;
+				strong {
+					display: block;
+					width: 28rem;
+					line-height: 7rem;
+					font-size: 6rem;
+					span {
+						display: flex;
+						justify-content: space-between;
+					}
+				}
+				.title1 {
+					font-weight: 100;
+				}
+				.title2 {
+					padding-top: 1rem;
+					font-weight: 400;
+				}
+				.title3 {
+					line-height: 6rem;
+					font-weight: 400;
+					font-size: 2rem;
+					color: var(--primary);
+				}
+			}
+			.career {
+				padding-top: 4rem;
+				font-size: 2rem;
+				p {
+					+ p {
+						padding-top: 1rem;
+					}
+					span {
+						display: flex;
+						&:nth-of-type(1) {
+							font-weight: 300;
+							color: var(--primaryReverse);
+						}
+						&:nth-of-type(2) {
+							justify-content: flex-end;
+						}
+					}
+				}
+			}
+		}
+		.photo {
+			margin-left: 10rem;
+			.photo_wrap {
+				display: block;
+				width: 40rem;
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+		hr {
+			width: 90%;
+			margin: 5rem auto;
+			border-style: dashed;
+		}
+		.bottom_area {
+			position: relative;
+			width: 80%;
+			margin: 0 auto;
+			.contact {
+				font-weight: 300;
+				font-size: 2.4rem;
+			}
+			.site {
+				padding-top: 2rem;
+				.site_title {
+					display: block;
+					font-weight: 400;
+					font-size: 1.8rem;
+					color: var(--primaryReverse);
+				}
+				a {
+					display: inline-flex;
+					font-weight: 300;
+					font-size: 1.8rem;
+					color: var(--mainTxt);
+				}
+			}
+			.banner {
+				position: absolute;
+				top: 0;
+				right: -14rem;
+				z-index: 0;
+				transform: rotate(15deg);
+				strong {
+					position: absolute;
+					top: 2rem;
+					left: 14rem;
+					z-index: 10;
+					background-color: red;
+					font-size: 3.5rem;
+					color: yellow;
+					transform: rotate(-15deg);
+				}
+			}
+		}
+	}
+}
+
 main {
 	.page_body {
 		width: 100rem;

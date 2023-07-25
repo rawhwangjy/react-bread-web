@@ -162,6 +162,67 @@
 			}
 		}
 	}
+	.mypage {
+		.content_area {
+			width: 100%;
+			padding: 7rem 0 5rem;
+			.top_area {
+				flex-direction: column;
+			}
+			.intro {
+				.title {
+					strong {
+						width: 15rem;
+						line-height: 4rem;
+						font-size: 3rem;
+					}
+					.title2 {
+						padding-top: 0;
+					}
+					.title3 {
+						padding-top: 1rem;
+						line-height: 3rem;
+					}
+				}
+				.career {
+					padding-top: 3rem;
+					p {
+						display: flex;
+						justify-content: space-between;
+					}
+				}
+			}
+			.photo {
+				margin-left: revert;
+				.photo_wrap {
+					padding-top: 3rem;
+					width: 100%;
+				}
+			}
+			hr {
+				width: 100%;
+				margin: 3rem 0;
+			}
+			.bottom_area {
+				width: 100%;
+				.banner {
+					position: relative;
+					top: 6rem;
+					right: 0;
+					padding-bottom: 6rem;
+					strong {
+						top: 2rem;
+						left: 7rem;
+						font-size: 2.2rem;
+					}
+					img {
+						width: 100%;
+						height: auto;
+					}
+				}
+			}
+		}
+	}
 	#mainArea {
 		h2 {
 			font-size: 5rem;
