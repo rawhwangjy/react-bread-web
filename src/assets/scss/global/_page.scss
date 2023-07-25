@@ -139,6 +139,9 @@
 					font-weight: 400;
 					font-size: 2rem;
 					color: var(--primary);
+					span {
+						display: inline;
+					}
 				}
 			}
 			.career {
@@ -194,10 +197,20 @@
 					color: var(--primaryReverse);
 				}
 				a {
+					position: relative;
 					display: inline-flex;
 					font-weight: 300;
 					font-size: 1.8rem;
 					color: var(--mainTxt);
+					&:hover {
+						&::after {
+							content: '✨';
+							position: absolute;
+							top: -2.2rem;
+							right: -2rem;
+							font-size: 3rem;
+						}
+					}
 				}
 			}
 			.banner {
@@ -227,8 +240,8 @@ main {
 		margin: 0 auto;
 		padding: 10.5rem 0 5rem;
 		.title_area {
-			padding-bottom: 5rem;
 			.main_title {
+				padding-bottom: 5rem;
 				font-size: common.$fs-xl;
 				text-align: center;
 			}

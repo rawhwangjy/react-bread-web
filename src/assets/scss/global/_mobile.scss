@@ -172,7 +172,7 @@
 			.intro {
 				.title {
 					strong {
-						width: 15rem;
+						width: 14rem;
 						line-height: 4rem;
 						font-size: 3rem;
 					}
@@ -180,8 +180,12 @@
 						padding-top: 0;
 					}
 					.title3 {
+						width: 100%;
 						padding-top: 1rem;
 						line-height: 3rem;
+						> span {
+							display: block;
+						}
 					}
 				}
 				.career {
@@ -252,8 +256,10 @@
 			overflow-y: auto;
 			width: 100%;
 			padding: 8.5rem 0 5rem;
-			.title-area {
-				padding-bottom: 2rem;
+			.title_area {
+				.main_title {
+					padding-bottom: 2rem;
+				}
 			}
 			.content_area {
 				.form_area {
