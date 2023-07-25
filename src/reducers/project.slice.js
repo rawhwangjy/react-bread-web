@@ -19,7 +19,7 @@ const projectSlice = createSlice({
 			state.projectList = [...action.payload.projectList];
 		},
 		getProject(state, action) {
-			state.projectView = action.payload.projectView[0];
+			state.projectView = action.payload.projectView;
 		},
 	},
 });

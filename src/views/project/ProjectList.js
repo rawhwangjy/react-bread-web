@@ -173,8 +173,8 @@ const ProjectList = () => {
 									>
 										<h4>{project.title}</h4>
 										<span className='types_badge'>
-											{project.typePc === 1 && <span className='pc'>PC</span>}
-											{project.typeMobile === 1 && (
+											{project.typePc && <span className='pc'>PC</span>}
+											{project.typeMobile && (
 												<span className='mobile'>모바일</span>
 											)}
 										</span>
