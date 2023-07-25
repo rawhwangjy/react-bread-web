@@ -151,6 +151,7 @@ const Navigation = ({ onChange }) => {
 										<NavLink
 											to='/me'
 											activeclassname='active'
+											onClick={closeGnb}
 										>
 											자기 소개
 										</NavLink>
