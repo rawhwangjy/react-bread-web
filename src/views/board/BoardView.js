@@ -3,13 +3,13 @@ import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { API_URL } from 'utils/common.constants';
-import { backWindow } from 'utils/common.function';
+// import { backWindow } from 'utils/common.function';
 import useFilelistToObject from 'hooks/useFilelistToObject';
 
 import { fetchBoardData } from 'actions/board.action';
 
 const BoardView = () => {
-	const { id } = useParams();
+	const { id, category } = useParams();
 	const dispatch = useDispatch();
 
 	const imgRefs = useRef([]);
@@ -104,13 +104,13 @@ const BoardView = () => {
 				</table>
 			</div>
 			<div className='footer_area side'>
-				<button
+				<Link
+					to={`/board/${category}`}
 					type='button'
-					className='btn lg secondary'
-					onClick={backWindow}
+					className='btn lg primary'
 				>
-					<span>목록</span>
-				</button>
+					목록
+				</Link>
 				<Link
 					to='/board/create'
 					type='button'
