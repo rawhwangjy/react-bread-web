@@ -48,7 +48,6 @@ const ProjectList = () => {
 	}, [dataSlicingInit]);
 
 	// 페이징
-	const [resetPage, setResetPage] = useState(false);
 	const onPageMove = useCallback(
 		(targetPage, startOffset, endOffset) => {
 			const slicedData = dataSlicing(projectList, startOffset, endOffset);
