@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { cloneDeep } from 'lodash';
 
-import Select from 'components/Select';
 import Pagination from 'components/Pagination';
+import ListFilter from 'views/project/components/ListFilter';
 
 import { LocalKey } from 'utils/common.constants';
 
@@ -30,6 +30,12 @@ const ProjectList = () => {
 		dispatch(fetchProjectListData());
 	}, [dispatch]);
 
+	useEffect(() => {
+		if (originProjectList.length === 0) {
+			setOriginProjectList(cloneDeep(projectList));
+		}
+	}, [originProjectList, projectList]);
+
 	const dataSlicing = (targetData, startOffset, endOffset) => {
 		return cloneDeep(targetData)
 			.sort((a, b) => Number(b.id) - Number(a.id))
@@ -52,64 +58,6 @@ const ProjectList = () => {
 		dataSlicingInit();
 	}, [dataSlicingInit]);
 
-	// 전체
-	const options = ['전체', '연도별', '타입별'];
-	const [defaultValue, setDefaultValue] = useState(options[0]);
-	const changedDefaultFilter = (nextState) => {
-		setDefaultValue(nextState);
-		dispatch(fetchProjectListData());
-	};
-
-	// 연도별
-	useEffect(() => {
-		if (originProjectList.length === 0) {
-			setOriginProjectList(cloneDeep(projectList));
-		}
-	}, [originProjectList, projectList]);
-
-	const yearOptions = useMemo(() => {
-		const allYears = [];
-		originProjectList.filter((project) => {
-			return allYears.push(project.startYear);
-		});
-		const removeSame = new Set(allYears);
-		const makeArray = [...removeSame];
-		makeArray.unshift('전체');
-		return makeArray;
-	}, [originProjectList]);
-
-	const [yearValue, setYearValue] = useState(yearOptions[0]);
-
-	const changedYearFilter = (nextState) => {
-		setYearValue(nextState);
-		if (nextState === '전체') {
-			dispatch(fetchProjectListData());
-		} else {
-			// reqData
-			const reqData = {
-				year: nextState,
-			};
-			dispatch(fetchProjectListYearData(reqData));
-		}
-	};
-
-	// 타입별
-	const typeOptions = ['전체', 'PC', '모바일'];
-	const [typeValue, setTypeValue] = useState(typeOptions[0]);
-
-	const changedTypeFilter = (nextState) => {
-		setTypeValue(nextState);
-		if (nextState === '전체') {
-			dispatch(fetchProjectListData());
-		} else {
-			// reqData
-			const reqData = {
-				type: nextState === 'PC' ? 'pc' : 'mobile',
-			};
-			dispatch(fetchProjectListTypeData(reqData));
-		}
-	};
-
 	// 페이징
 	const onPageMove = useCallback(
 		(targetPage, startOffset, endOffset) => {
@@ -127,34 +75,7 @@ const ProjectList = () => {
 			</div>
 			<div className='content_area'>
 				<div className='project_area'>
-					<div className='project_filter'>
-						<Select
-							options={options}
-							selectedValue={defaultValue}
-							className={
-								defaultValue === '연도별' || defaultValue === '타입별'
-									? 'half_width'
-									: ''
-							}
-							onChange={changedDefaultFilter}
-						/>
-						{defaultValue === '연도별' && (
-							<Select
-								options={yearOptions}
-								selectedValue={yearValue}
-								className='half_width'
-								onChange={changedYearFilter}
-							/>
-						)}
-						{defaultValue === '타입별' && (
-							<Select
-								options={typeOptions}
-								selectedValue={typeValue}
-								className='half_width'
-								onChange={changedTypeFilter}
-							/>
-						)}
-					</div>
+					<ListFilter originProjectList={originProjectList} />
 					<div className='project_list'>
 						{mappingPojectList.map((project, index) => (
 							<div

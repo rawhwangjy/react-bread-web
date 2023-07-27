@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, createHashRouter } from 'react-router-dom';
 
 import Container from 'components/layouts/Container';
 
@@ -9,7 +9,8 @@ import RoutesGuide from 'router/routes/RoutesGuide';
 import RoutesProject from 'router/routes/RoutesProject';
 import RoutesBoard from 'router/routes/RoutesBoard';
 
-const router = createBrowserRouter([
+// const router = createBrowserRouter([
+const router = createHashRouter([
 	{
 		path: '/',
 		element: <Container />,
