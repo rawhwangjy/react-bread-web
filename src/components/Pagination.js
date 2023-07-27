@@ -1,4 +1,4 @@
-import { useCallback, useReducer } from 'react';
+import { useCallback, useEffect, useReducer, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -29,20 +29,21 @@ const reducerFn = (state, action) => {
 	}
 };
 
-const Pagination = ({
-	currentPage,
-	totalDataLength,
-	dataPerPage,
-	onChange,
-}) => {
+const Pagination = ({ totalDataLength, dataPerPage, onChange }) => {
+	const TOTAL_COUNT = totalDataLength; // 26
+	const TOTAL_PAGE = Math.ceil(TOTAL_COUNT / dataPerPage); // 5
+
+	useEffect(() => {
+		if (totalDataLength) {
+			dispatchFn({ type: 'CLICK', payload: 1 });
+		}
+	}, [totalDataLength]);
+
 	const initialState = {
 		currentPage: 1,
 	};
 
 	const [state, dispatchFn] = useReducer(reducerFn, initialState);
-
-	const TOTAL_COUNT = totalDataLength; // 26
-	const TOTAL_PAGE = Math.ceil(TOTAL_COUNT / dataPerPage); // 5
 
 	const onPrev = () => {
 		dispatchFn({ type: 'PREV' });

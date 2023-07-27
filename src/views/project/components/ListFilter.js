@@ -17,7 +17,7 @@ const ListFilter = ({ originProjectList }) => {
 	const [defaultValue, setDefaultValue] = useState(options[0]);
 	const changedDefaultFilter = (nextState) => {
 		setDefaultValue(nextState);
-		// dispatch(fetchProjectListData());
+		dispatch(fetchProjectListData());
 	};
 
 	// 연도별
