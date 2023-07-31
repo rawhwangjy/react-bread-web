@@ -28,8 +28,27 @@
 		color: var(--mainTxt);
 		transform: translate3d(-50%, -50%, 0);
 		.content {
+			.notice {
+				+ .notice {
+					padding-top: 1.5rem;
+				}
+			}
+			.dot {
+				display: flex;
+				align-items: center;
+				&::before {
+					content: '';
+					display: block;
+					width: 0.4rem;
+					height: 0.4rem;
+					margin-top: 0.4rem;
+					margin-right: 0.5rem;
+					border-radius: 50%;
+					background-color: var(--mainBgReverse);
+				}
+			}
 			p {
-				margin-bottom: 3rem;
+				margin-bottom: 1rem;
 				font-size: common.$fs-m;
 			}
 			a {

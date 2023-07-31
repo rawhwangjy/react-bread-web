@@ -21,16 +21,23 @@ const CookiePopup = ({ onChange }) => {
 		<div className='cookie_popup'>
 			<div className='cookie_content'>
 				<div className='content'>
-					<p>이 사이트는 React 프레임워크를 이용해 만들었습니다.</p>
-					<a
-						href='http://breadg.dothome.co.kr/'
-						target='_blank'
-						role='button'
-						rel='noreferrer'
-						className='btn sm primary border'
-					>
-						Vue3 포트폴리오 사이트 바로가기
-					</a>
+					<div className='notice'>
+						<p className='dot'>Storybook 적용 중입니다.(08.01 ~)</p>
+					</div>
+					<div className='notice'>
+						<p className='dot'>
+							이 사이트는 React 프레임워크를 이용해 만들었습니다.
+						</p>
+						<a
+							href='http://breadg.dothome.co.kr/'
+							target='_blank'
+							role='button'
+							rel='noreferrer'
+							className='btn md primary border'
+						>
+							Vue3 포트폴리오 사이트 바로가기
+						</a>
+					</div>
 				</div>
 				<div className='cookie_btns'>
 					<Checkbox
