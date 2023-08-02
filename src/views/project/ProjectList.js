@@ -11,6 +11,8 @@ import { LocalKey } from 'utils/common.constants';
 
 import { fetchProjectListData } from 'actions/project.action';
 
+import { Button } from 'stories/Button.jsx';
+
 const ProjectList = () => {
 	const dispatch = useDispatch();
 
@@ -59,6 +61,11 @@ const ProjectList = () => {
 
 	return (
 		<div className='page_container'>
+			<Button
+				primary
+				size='small'
+				label='Sign up'
+			/>
 			<div className='title_area'>
 				<h3 className='sr_only'>참여 프로젝트 목록</h3>
 			</div>
