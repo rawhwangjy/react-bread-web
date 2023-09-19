@@ -22,7 +22,7 @@ const CookiePopup = ({ onChange }) => {
 			<div className='cookie_content'>
 				<div className='content'>
 					<div className='notice'>
-						<p className='dot'>Storybook 적용 중입니다.(08.01 ~)</p>
+						<p className='dot'>Storybook 적용 예정</p>
 					</div>
 					<div className='notice'>
 						<p className='dot'>

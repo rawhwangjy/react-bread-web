@@ -94,13 +94,13 @@ const Mypage = () => {
 							http://breadg.dothome.co.kr/
 						</a>
 					</div>
-					<div className='banner'>
+					{/* <div className='banner'>
 						<strong>중고 신입</strong>
 						<img
 							src={photo_bg}
 							alt='타이어보다 싸다!'
 						/>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>
